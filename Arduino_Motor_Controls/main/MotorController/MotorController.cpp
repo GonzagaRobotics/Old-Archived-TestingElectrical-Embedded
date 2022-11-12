@@ -1,28 +1,70 @@
+/*
+Title:
+Author:
+Date Created:
+Date Modified:
+Description:
+
+*/
+
 #include "MotorController.h"
 
-// cam code
+/*
+Description:
+Input:
+Output:
 
+*/
 MotorSet::MotorSet(){
 
 }
 
+/*
+Description:
+Input:
+Output:
+
+*/
 MotorSet::~MotorSet(){
 
 }
 
+/*
+Description:
+Input:
+Output:
+
+*/
 MotorSet::driveForwards(){
 
 }
 
+/*
+Description:
+Input:
+Output:
+
+*/
 MotorSet::driveBackwards(){
 
 }
 
+/*
+Description:
+Input:
+Output:
+
+*/
 MotorSet::stop(){
     
 }
 
+/*
+Description:
+Input:
+Output:
 
+*/
 MotorController::MotorController(int pin1, int pin2, int pinEn, char side){
     pinMode(pin1, OUTPUT);
     this->pin1 = pin1;
@@ -39,6 +81,12 @@ MotorController::MotorController(int pin1, int pin2, int pinEn, char side){
     ledcAttachPin(this->pinEn, pwmChannel);
 }
 
+/*
+Description:
+Input:
+Output:
+
+*/
 void MotorController::motorForwards(double speed){
     if(speed > 1)
         speed = 1;
@@ -57,6 +105,12 @@ void MotorController::motorForwards(double speed){
     }
 }
 
+/*
+Description:
+Input:
+Output:
+
+*/
 void MotorController::motorBackwards(double speed){
     if(speed > 1)
         speed = 1;
@@ -75,6 +129,12 @@ void MotorController::motorBackwards(double speed){
     }
 }
 
+/*
+Description:
+Input:
+Output:
+
+*/
 void MotorController::motorStop(){
     digitalWrite(pin1, LOW);
     digitalWrite(pin2, LOW);

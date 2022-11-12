@@ -1,9 +1,23 @@
+/*
+Title:
+Author:
+Date Created:
+Date Modified:
+Description:
+
+*/
+
 #ifndef MOTOR_CONTROLLER_H
 #define MOTOR_CONTROLLER_H
 
 #include <Arduino.h>
-// Cam wuz here
 
+/*
+Description:
+Input:
+Output:
+
+*/
 class MotorSet{
     public:
         MotorSet();
@@ -16,7 +30,12 @@ class MotorSet{
 
 }
 
+/*
+Description:
+Input:
+Output:
 
+*/
 class MotorController{
     public:
         MotorController(int pin1, int pin2, int pinEn, char side);
