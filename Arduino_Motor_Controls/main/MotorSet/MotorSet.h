@@ -29,6 +29,8 @@ class MotorSet{
         void driveForwards(double speed);
         void driveBackwards(double speed);
         void stop();
+        void spinLeft(double speed);
+        void spinRight(double speed);
 
         void addMotor(int pin1, int pin2, int pinEn, char side);
     private:
