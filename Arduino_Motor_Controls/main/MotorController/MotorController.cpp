@@ -9,6 +9,7 @@ Description: Functions for Motorcontroller
 
 #include "MotorController.h"
 
+
 /*
 Function: MotorSet constructor
 Input:
@@ -64,6 +65,7 @@ Description:
 MotorSet::stop(){
     
 }
+
 
 /*
 Function: Constructor for the Motorcontroller class
