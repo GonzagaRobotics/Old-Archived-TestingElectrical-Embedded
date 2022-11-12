@@ -9,12 +9,11 @@ Description: Functions for Motorcontroller
 
 #include "MotorController.h"
 
-
 /*
-Function: Constructor for the Motorcontroller class
-Input: pin1, pin2, pinEn, side 
+Function: MotorController()
+Input: pin1, pin2, pinEn, side the motor is on (left = 'l', right = 'r')
 Output: N/A
-Description: Sets up the pins for the motorcontroller and tells which side motors to communicate with
+Description: (Constructor) Sets up the pins for the motorcontroller 
 
 */
 
@@ -35,8 +34,8 @@ MotorController::MotorController(int pin1, int pin2, int pinEn, char side){
 }
 
 /*
-Function: Spins the wheel forwards
-Input: speed for the wheels
+Function: motorForwards()
+Input: speed for the wheels (value between 0 and 1)
 Output: N/A
 Description: sends a signal to the motor to spin the right or left wheel forwards
 
@@ -60,8 +59,8 @@ void MotorController::motorForwards(double speed){
 }
 
 /*
-Function: Spins the wheel backwards
-Input: speed for the wheel
+Function: motorBackwards()
+Input: speed for the wheel (between 0 and 1)
 Output: N/A
 Description: sends a signal to the motor to spin the right or left wheel backwards
 
@@ -85,7 +84,7 @@ void MotorController::motorBackwards(double speed){
 }
 
 /*
-Function: Stops the motor from spinning
+Function: motorStop()
 Input: N/A
 Output: Sends a signal to motor to stop spinning
 Description: 
@@ -97,10 +96,10 @@ void MotorController::motorStop(){
 }
 
 /*
-Function: 
+Function: getSide()
 Input: N/A
-Output:
-Description: 
+Output: The side the motor is on 'l' or 'r'
+Description: Getter for the side variable
 
 */
 char MotorController::getSide(){
