@@ -42,7 +42,7 @@ Input: pin 1, pin 2, enable pin, and what side the motor is on (left = 'l', righ
 Output: N/A
 Description: Adds an instance of MotorController to the set array
 */
-void MotorSet::addMotor(int pin1, int pin2, int pinEn, char side{
+void MotorSet::addMotor(int pin1, int pin2, int pinEn, char side){
     if(numMotors < 8){
         numMotors++;
         set[numMotors - 1] = new MotorController(pin1, pin2, pinEn, side);
