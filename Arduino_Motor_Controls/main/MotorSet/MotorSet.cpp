@@ -16,6 +16,7 @@ Output: N/A
 Description: Constructor for MotorSet, initializes variables
 */
 MotorSet::MotorSet(){
+    // Setting the total number of current motors to 0
     numMotors = 0;
 }
 
@@ -27,7 +28,7 @@ Description: Destructor for MotorSet, deletes all variables and objects used
 */
 MotorSet::~MotorSet(){
     // Deleting all MotorController instances that each element of set is pointing to
-    for(int i = 0; i < numMotors){
+    for(int i = 0; i < numMotors; i++){
         delete[] set[i];
     }
 
@@ -42,10 +43,14 @@ Input: pin 1, pin 2, enable pin, and what side the motor is on (left = 'l', righ
 Output: N/A
 Description: Adds an instance of MotorController to the set array
 */
-void MotorSet::addMotor(int pin1, int pin2, int pinEn, char side{
-    if(numMotors < 8){
+void MotorSet::addMotor(int pin1, int pin2, int pinEn, int pwmChannel, char side{
+    // If the max number of motors has not been reached
+    if(numMotors < maxMotors){
+        // increment the number of motors
         numMotors++;
-        set[numMotors - 1] = new MotorController(pin1, pin2, pinEn, side);
+
+        // add a new motor to the set
+        set[numMotors - 1] = new MotorController(pin1, pin2, pinEn, pwmChannel, side);
     }
 }
 

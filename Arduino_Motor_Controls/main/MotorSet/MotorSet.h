@@ -32,7 +32,7 @@ class MotorSet{
         void spinLeft(double speed);
         void spinRight(double speed);
 
-        void addMotor(int pin1, int pin2, int pinEn, char side);
+        void addMotor(int pin1, int pin2, int pinEn, int pwmChannel, char side);
     private:
         MotorController* set[maxMotors];
         numMotors;
