@@ -1,3 +1,11 @@
+/*
+Title: MotorSet.h
+Author: 
+Date Created: 11/12/22
+Date Modified: 11/12/22
+Description: Header file for MotorSet
+
+*/
 #ifndef MOTOR_SET_H
 #define MOTOR_SET_H
 
@@ -7,6 +15,12 @@
 
 #define maxMotors 8
 
+/*
+Function: MotorSet class definition
+Input: 
+Output: 
+Description: 
+*/
 class MotorSet{
     public:
         MotorSet();
