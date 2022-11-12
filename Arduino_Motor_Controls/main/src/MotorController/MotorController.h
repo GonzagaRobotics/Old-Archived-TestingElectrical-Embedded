@@ -34,12 +34,12 @@ class MotorController{
         int pin1;
         int pin2;
         int pinEn;
+        int pwmChannel;
         char side;
 
-        const int freq = 500;
-        const int pwmChannel;
-        const int resolution = 8;
-        const int maxDutyCycle = 1;
+        int freq = 500;
+        int resolution = 8;
+        int maxDutyCycle = 1;
 };
 
 #endif

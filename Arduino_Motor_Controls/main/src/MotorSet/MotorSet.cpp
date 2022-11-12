@@ -32,9 +32,8 @@ MotorSet::~MotorSet(){
         delete[] set[i];
     }
 
-    // Deleting the set and numMotors
+    // Deleting the set
     delete[] set;
-    delete numMotors;
 }
 
 /*
@@ -43,7 +42,7 @@ Input: pin 1, pin 2, enable pin, and what side the motor is on (left = 'l', righ
 Output: N/A
 Description: Adds an instance of MotorController to the set array
 */
-void MotorSet::addMotor(int pin1, int pin2, int pinEn, int pwmChannel, char side{
+void MotorSet::addMotor(int pin1, int pin2, int pinEn, int pwmChannel, char side){
     // If the max number of motors has not been reached
     if(numMotors < maxMotors){
         // increment the number of motors
@@ -96,7 +95,7 @@ Input: Turning speed
 Output: Rover spins left
 Description: Spins left
 */
-void MotorSet::spinLeft(double speed)){
+void MotorSet::spinLeft(double speed){
     for (int i; i < numMotors; i++) {
         if (set[i]->getSide() == 'l') { // If the motor is on the left
             set[i]->motorBackwards(speed); // Then move backwards

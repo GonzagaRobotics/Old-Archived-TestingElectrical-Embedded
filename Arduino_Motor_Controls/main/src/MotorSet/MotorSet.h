@@ -9,7 +9,7 @@ Description: Header file for MotorSet
 #ifndef MOTOR_SET_H
 #define MOTOR_SET_H
 
-#include "MotorController.h"
+#include "../MotorController/MotorController.h"
 #include <Arduino.h>
 
 
@@ -26,17 +26,17 @@ class MotorSet{
         MotorSet();
         ~MotorSet();
 
-        void driveForwards(double speed);
-        void driveBackwards(double speed);
+        void driveForwards(double);
+        void driveBackwards(double);
         void stop();
-        void spinLeft(double speed);
-        void spinRight(double speed);
+        void spinLeft(double);
+        void spinRight(double);
 
-        void addMotor(int pin1, int pin2, int pinEn, int pwmChannel, char side);
+        void addMotor(int, int, int, int, char);
     private:
         MotorController* set[maxMotors];
-        numMotors;
+        int numMotors;
         
-}
+};
 
 #endif
