@@ -26,19 +26,21 @@ Output: N/A
 Description: Destructor for MotorSet, deletes all variables and objects used
 */
 MotorSet::~MotorSet(){
+    // Deleting all MotorController instances that each element of set is pointing to
     for(int i = 0; i < numMotors){
-        delete set[i];
+        delete[] set[i];
     }
 
+    // Deleting the set and numMotors
     delete[] set;
     delete numMotors;
 }
 
 /*
 Function: addMotor
-Input: N/A
+Input: pin 1, pin 2, enable pin, and what side the motor is on (left = 'l', right = 'r')
 Output: N/A
-Description:
+Description: Adds an instance of MotorController to the set array
 */
 void MotorSet::addMotor(int pin1, int pin2, int pinEn, char side{
     if(numMotors < 8){
