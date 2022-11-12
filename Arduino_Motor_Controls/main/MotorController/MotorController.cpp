@@ -9,55 +9,6 @@ Description:
 
 #include "MotorController.h"
 
-/*
-Description:
-Input:
-Output:
-*/
-
-MotorSet::MotorSet(){
-
-}
-
-/*
-Description:
-Input:
-Output:
-
-*/
-MotorSet::~MotorSet(){
-
-}
-
-/*
-Description:
-Input:
-Output:
-
-*/
-MotorSet::driveForwards(){
-
-}
-
-/*
-Description:
-Input:
-Output:
-
-*/
-MotorSet::driveBackwards(){
-
-}
-
-/*
-Description:
-Input:
-Output:
-
-*/
-MotorSet::stop(){
-    
-}
 
 /*
 Description:
