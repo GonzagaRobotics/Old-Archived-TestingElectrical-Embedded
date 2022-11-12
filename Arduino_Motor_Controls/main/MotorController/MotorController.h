@@ -17,8 +17,6 @@ Function: MotorSet class definition
 Input: 
 Output: 
 Description:
-Input:
-Output:
 */
 
 class MotorSet{
