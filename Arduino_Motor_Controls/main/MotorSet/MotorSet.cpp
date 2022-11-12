@@ -13,7 +13,7 @@ Description: Function file for MotorSet
 Function: MotorSet constructor
 Input: N/A
 Output: N/A
-Description:
+Description: Constructor for MotorSet, initializes variables
 */
 MotorSet::MotorSet(){
     numMotors = 0;
@@ -23,10 +23,15 @@ MotorSet::MotorSet(){
 Function: MotorSet destructor
 Input: N/A
 Output: N/A
-Description:
+Description: Destructor for MotorSet, deletes all variables and objects used
 */
 MotorSet::~MotorSet(){
-    numMotors = 0;
+    for(int i = 0; i < numMotors){
+        delete set[i];
+    }
+
+    delete[] set;
+    delete numMotors;
 }
 
 /*
@@ -37,8 +42,8 @@ Description:
 */
 void MotorSet::addMotor(int pin1, int pin2, int pinEn, char side{
     if(numMotors < 8){
-        set[numMotors] = new MotorController(pin1, pin2, pinEn, side);
         numMotors++;
+        set[numMotors - 1] = new MotorController(pin1, pin2, pinEn, side);
     }
 }
 

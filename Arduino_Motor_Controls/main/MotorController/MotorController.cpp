@@ -96,4 +96,14 @@ void MotorController::motorStop(){
     digitalWrite(pin2, LOW);
 }
 
+/*
+Function: 
+Input: N/A
+Output:
+Description: 
 
+*/
+char MotorController::getSide(){
+    // returns what side the motor is on
+    return side;
+}
