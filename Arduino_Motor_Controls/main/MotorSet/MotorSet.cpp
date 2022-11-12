@@ -107,7 +107,7 @@ Input: Turning speed
 Output: Rover spins right
 Description: Spins right
 */
-void MotorSet::spinRight(double speed)){
+void MotorSet::spinRight(double speed){
     for (int i; i < numMotors; i++) {
         if (set[i]->getSide() == 'r') {
             set[i]->motorBackwards(speed);
