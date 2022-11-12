@@ -97,13 +97,13 @@ void MotorController::motorStop(){
 }
 
 /*
-Function: Stops the motor from spinning
+Function: 
 Input: N/A
-Output: Sends a signal to motor to stop spinning
+Output:
 Description: 
 
 */
-void MotorController::getSide(){
+char MotorController::getSide(){
     // returns what side the motor is on
     return side;
 }
