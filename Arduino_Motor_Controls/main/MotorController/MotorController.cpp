@@ -1,6 +1,26 @@
 #include "MotorController.h"
 
-// Hi github
+
+MotorSet::MotorSet(){
+
+}
+
+MotorSet::~MotorSet(){
+
+}
+
+MotorSet::driveForwards(){
+
+}
+
+MotorSet::driveBackwards(){
+
+}
+
+MotorSet::stop(){
+    
+}
+
 
 MotorController::MotorController(int pin1, int pin2, int pinEn, char side){
     pinMode(pin1, OUTPUT);
