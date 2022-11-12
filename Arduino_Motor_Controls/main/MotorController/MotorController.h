@@ -12,24 +12,6 @@ Description: Header file for MotorController
 
 #include <Arduino.h>
 
-/*
-Function: MotorSet class definition
-Input: 
-Output: 
-Description:
-*/
-
-class MotorSet{
-    public:
-        MotorSet();
-        ~MotorSet();
-
-        void driveForwards(double speed);
-        void driveBackwards(double speed);
-        void stop();
-    private:
-
-}
 
 /*
 Function: MotorController class definition

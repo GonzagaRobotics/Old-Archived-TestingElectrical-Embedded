@@ -11,63 +11,6 @@ Description: Functions for Motorcontroller
 
 
 /*
-Function: MotorSet constructor
-Input:
-Output:
-Description:
-
-*/
-
-MotorSet::MotorSet(){
-
-}
-
-/*
-Function:
-Input:
-Output:
-Description:
-
-*/
-MotorSet::~MotorSet(){
-
-}
-
-/*
-Function:
-Input:
-Output:
-Description:
-
-*/
-MotorSet::driveForwards(){
-
-}
-
-/*
-Function:
-Input:
-Output:
-Description:
-
-*/
-MotorSet::driveBackwards(){
-
-}
-
-/*
-Function:
-Input:
-Output:
-Description:
-
-*/
-MotorSet::stop(){
-    
-}
-
-
-/*
 Function: Constructor for the Motorcontroller class
 Input: pin1, pin2, pinEn, side 
 Output: N/A
