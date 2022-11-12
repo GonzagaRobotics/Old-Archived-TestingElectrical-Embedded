@@ -4,6 +4,19 @@
 #include <Arduino.h>
 // Cam wuz here
 
+class MotorSet{
+    public:
+        MotorSet();
+        ~MotorSet();
+
+        void driveForwards(double speed);
+        void driveBackwards(double speed);
+        void stop();
+    private:
+
+}
+
+
 class MotorController{
     public:
         MotorController(int pin1, int pin2, int pinEn, char side);
