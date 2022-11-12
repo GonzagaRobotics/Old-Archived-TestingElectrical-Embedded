@@ -54,7 +54,7 @@ Output: Changes all motors to the value
 Description: Spins the wheels forwards
 */
 void MotorSet::driveForwards(double speed){
-    for (int i : set) {
+    for (int i; i < numMotors; i++) {
         set[i]->motorForwards(speed);
     }
 }
@@ -66,7 +66,7 @@ Output: Changes all motors to the value
 Description:
 */
 void MotorSet::driveBackwards(double speed){
-    for (int i : set) {
+    for (int i; i < numMotors; i++) {
         set[i]->motorBackwards(speed);
     }
 }
@@ -78,7 +78,7 @@ Output: N/A
 Description: Stops motors
 */
 void MotorSet::stop(){
-    for (int i : set) {
+    for (int i; i < numMotors; i++) {
         set[i]->motorStop();
     }
 }
@@ -90,8 +90,8 @@ Output: Rover spins left
 Description: Spins left
 */
 void MotorSet::spinLeft(double speed)){
-    for (int i : set) {
-        if (set[i].getSide() == 'l') {
+    for (int i; i < numMotors; i++) {
+        if (set[i]->getSide() == 'l') {
             set[i]->motorBackwards(speed);
         } else {
             set[i]->motorForwards(speed);
@@ -106,8 +106,8 @@ Output: Rover spins right
 Description: Spins right
 */
 void MotorSet::spinRight(double speed)){
-    for (int i : set) {
-        if (set[i].getSide() == 'r') {
+    for (int i; i < numMotors; i++) {
+        if (set[i]->getSide() == 'r') {
             set[i]->motorBackwards(speed);
         } else {
             set[i]->motorForwards(speed);
