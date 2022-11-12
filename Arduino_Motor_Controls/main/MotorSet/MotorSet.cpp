@@ -10,7 +10,7 @@ Description: Function file for MotorSet
 #include "MotorSet.h"
 
 /*
-Function: MotorSet constructor
+Function: MotorSet()
 Input: N/A
 Output: N/A
 Description: Constructor for MotorSet, initializes variables
@@ -20,7 +20,7 @@ MotorSet::MotorSet(){
 }
 
 /*
-Function: MotorSet destructor
+Function: ~MotorSet()
 Input: N/A
 Output: N/A
 Description: Destructor for MotorSet, deletes all variables and objects used
@@ -37,7 +37,7 @@ MotorSet::~MotorSet(){
 }
 
 /*
-Function: addMotor
+Function: addMotor()
 Input: pin 1, pin 2, enable pin, and what side the motor is on (left = 'l', right = 'r')
 Output: N/A
 Description: Adds an instance of MotorController to the set array
@@ -50,7 +50,7 @@ void MotorSet::addMotor(int pin1, int pin2, int pinEn, char side){
 }
 
 /*
-Function: driveForwards
+Function: driveForwards()
 Input: A speed to go forwards
 Output: Changes all motors to the value
 Description: Spins the wheels forwards
@@ -62,7 +62,7 @@ void MotorSet::driveForwards(double speed){
 }
 
 /*
-Function: driveBackwards
+Function: driveBackwards()
 Input: A speed to go backwards
 Output: Changes all motors to the value
 Description:
@@ -74,7 +74,7 @@ void MotorSet::driveBackwards(double speed){
 }
 
 /*
-Function: stop
+Function: stop()
 Input: N/A
 Output: N/A
 Description: Stops motors
@@ -86,7 +86,7 @@ void MotorSet::stop(){
 }
 
 /*
-Function: Spin left
+Function: spinLeft()
 Input: Turning speed
 Output: Rover spins left
 Description: Spins left
@@ -102,12 +102,12 @@ void MotorSet::spinLeft(double speed)){
 }
 
 /*
-Function: Spin right
+Function: spinRight()
 Input: Turning speed
 Output: Rover spins right
 Description: Spins right
 */
-void MotorSet::spinRight(double speed)){
+void MotorSet::spinRight(double speed){
     for (int i; i < numMotors; i++) {
         if (set[i]->getSide() == 'r') {
             set[i]->motorBackwards(speed);

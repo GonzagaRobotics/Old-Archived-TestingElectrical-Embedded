@@ -14,10 +14,10 @@ Description: Header file for MotorController
 
 
 /*
-Function: MotorController class definition
-Input:
-Output:
-Description:
+Class: MotorController
+Input: pin 1, pin 2, enable pin, and the side the motor is on (left = 'l', right = 'r')
+Output: N/A
+Description: This class represents one motor controller on the board. MotorSet uses and instance of this class for each of its motors
 
 */
 
