@@ -49,22 +49,26 @@ void MotorSet::addMotor(int pin1, int pin2, int pinEn, char side{
 
 /*
 Function: driveForwards
-Input: N/A
-Output: N/A
+Input: A speed to go forwards
+Output: Changes all motors to the value
 Description: Spins the wheels forwards
 */
-void MotorSet::driveForwards(){
-
+void MotorSet::driveForwards(int speed){
+    for (int i : set) {
+        set[i]->motorForwards(speed);
+    }
 }
 
 /*
 Function: driveBackwards
-Input: N/A
-Output: N/A
+Input: A speed to go backwards
+Output: Changes all motors to the value
 Description:
 */
 void MotorSet::driveBackwards(){
-
+    for (int i : set) {
+        set[i]->motorBackwards(speed);
+    }
 }
 
 /*
@@ -74,5 +78,7 @@ Output: N/A
 Description: Stops motors
 */
 void MotorSet::stop(){
-    
+    for (int i : set) {
+        set[i]->motorStop(speed);
+    }
 }
