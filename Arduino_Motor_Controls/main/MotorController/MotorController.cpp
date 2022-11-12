@@ -1,6 +1,6 @@
 #include "MotorController.h"
 
-//hi github
+//hi githu
 
 MotorController::MotorController(int pin1, int pin2, int pinEn, char side){
     pinMode(pin1, OUTPUT);
