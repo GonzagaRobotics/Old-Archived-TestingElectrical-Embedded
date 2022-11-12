@@ -1,9 +1,9 @@
 /*
-Title:
-Author:
-Date Created:
-Date Modified:
-Description:
+Title: MotorController.h
+Author: 
+Date Created: 11/12/22
+Date Modified: 11/12/22
+Description: Header file for MotorController
 
 */
 
@@ -13,10 +13,10 @@ Description:
 #include <Arduino.h>
 
 /*
+Function: MotorSet class definition
+Input: 
+Output: 
 Description:
-Input:
-Output:
-
 */
 class MotorSet{
     public:
@@ -31,9 +31,10 @@ class MotorSet{
 }
 
 /*
-Description:
+Function: MotorController class definition
 Input:
 Output:
+Description:
 
 */
 class MotorController{
