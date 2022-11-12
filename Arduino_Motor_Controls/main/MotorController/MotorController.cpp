@@ -13,7 +13,8 @@ Description: Functions for Motorcontroller
 Function: MotorController()
 Input: pin1, pin2, pinEn, side the motor is on (left = 'l', right = 'r')
 Output: N/A
-Description: Sets up the pins for the motorcontroller and tells which side motors to communicate with
+Description: Sets up the pins for the motorcontroller and tells which side 
+             motors to communicate with
 
 */
 MotorController::MotorController(int pin1, int pin2, int pinEn, char side){
