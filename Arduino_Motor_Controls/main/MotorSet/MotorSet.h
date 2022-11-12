@@ -16,10 +16,10 @@ Description: Header file for MotorSet
 #define maxMotors 8
 
 /*
-Function: MotorSet class definition
-Input: 
-Output: 
-Description: 
+Function: MotorSet
+Input: None
+Output: None
+Description: Declares an instance of a set of motors (all wheels in a rover)
 */
 class MotorSet{
     public:
