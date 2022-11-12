@@ -57,7 +57,7 @@ Description: Spins the wheels forwards
 */
 void MotorSet::driveForwards(double speed){
     for (int i; i < numMotors; i++) {
-        set[i]->motorForwards(speed);
+        set[i]->motorForwards(speed); // In set[] from 0 to numMotors, set each motor to backwards at the same speed
     }
 }
 
@@ -69,7 +69,7 @@ Description:
 */
 void MotorSet::driveBackwards(double speed){
     for (int i; i < numMotors; i++) {
-        set[i]->motorBackwards(speed);
+        set[i]->motorBackwards(speed); // In set[] from 0 to numMotors, set each motor to backwards at the same speed
     }
 }
 
@@ -81,7 +81,7 @@ Description: Stops motors
 */
 void MotorSet::stop(){
     for (int i; i < numMotors; i++) {
-        set[i]->motorStop();
+        set[i]->motorStop(); // In set[] from 0 to numMotors, set each motor to stop
     }
 }
 
@@ -93,10 +93,10 @@ Description: Spins left
 */
 void MotorSet::spinLeft(double speed)){
     for (int i; i < numMotors; i++) {
-        if (set[i]->getSide() == 'l') {
-            set[i]->motorBackwards(speed);
+        if (set[i]->getSide() == 'l') { // If the motor is on the left
+            set[i]->motorBackwards(speed); // Then move backwards
         } else {
-            set[i]->motorForwards(speed);
+            set[i]->motorForwards(speed); // Else motor is on the right, so move forwards
         }
     }
 }
@@ -109,10 +109,10 @@ Description: Spins right
 */
 void MotorSet::spinRight(double speed)){
     for (int i; i < numMotors; i++) {
-        if (set[i]->getSide() == 'r') {
-            set[i]->motorBackwards(speed);
+        if (set[i]->getSide() == 'r') { // If the motor is on the right
+            set[i]->motorBackwards(speed); // Then move backwards
         } else {
-            set[i]->motorForwards(speed);
+            set[i]->motorForwards(speed); // Else motor is on the right, so move forwards
         }
     }
 }
