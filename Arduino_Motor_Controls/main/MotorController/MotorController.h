@@ -29,7 +29,7 @@ class MotorController{
         void motorBackwards(double speed);
         void motorStop();
 
-        void getSide();
+        char getSide();
     private:
         int pin1;
         int pin2;
