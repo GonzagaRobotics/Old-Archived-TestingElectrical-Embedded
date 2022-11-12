@@ -96,4 +96,14 @@ void MotorController::motorStop(){
     digitalWrite(pin2, LOW);
 }
 
+/*
+Function: Stops the motor from spinning
+Input: N/A
+Output: Sends a signal to motor to stop spinning
+Description: 
 
+*/
+void MotorController::getSide(){
+    // returns what side the motor is on
+    return side;
+}
