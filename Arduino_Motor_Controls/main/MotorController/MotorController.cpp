@@ -1,18 +1,20 @@
 /*
-Title:
+Title: MotorController.cpp
 Author:
-Date Created:
-Date Modified:
-Description:
+Date Created: 11/12/22
+Date Modified: 11/12/22
+Description: Functions for Motorcontroller
 
 */
 
 #include "MotorController.h"
 
 /*
-Description:
+Function: MotorSet constructor
 Input:
 Output:
+Description:
+
 */
 
 MotorSet::MotorSet(){
@@ -20,9 +22,10 @@ MotorSet::MotorSet(){
 }
 
 /*
-Description:
+Function:
 Input:
 Output:
+Description:
 
 */
 MotorSet::~MotorSet(){
@@ -30,9 +33,10 @@ MotorSet::~MotorSet(){
 }
 
 /*
-Description:
+Function:
 Input:
 Output:
+Description:
 
 */
 MotorSet::driveForwards(){
@@ -40,9 +44,10 @@ MotorSet::driveForwards(){
 }
 
 /*
-Description:
+Function:
 Input:
 Output:
+Description:
 
 */
 MotorSet::driveBackwards(){
@@ -50,9 +55,10 @@ MotorSet::driveBackwards(){
 }
 
 /*
-Description:
+Function:
 Input:
 Output:
+Description:
 
 */
 MotorSet::stop(){
@@ -60,9 +66,10 @@ MotorSet::stop(){
 }
 
 /*
-Description:
-Input:
-Output:
+Function: Constructor for the Motorcontroller class
+Input: pin1, pin2, pinEn, side 
+Output: N/A
+Description: Sets up the pins for the motorcontroller and tells which side motors to communicate with
 
 */
 
@@ -83,9 +90,10 @@ MotorController::MotorController(int pin1, int pin2, int pinEn, char side){
 }
 
 /*
-Description:
-Input:
-Output:
+Function: Spins the wheel forwards
+Input: speed for the wheels
+Output: N/A
+Description: sends a signal to the motor to spin the right or left wheel forwards
 
 */
 void MotorController::motorForwards(double speed){
@@ -107,9 +115,10 @@ void MotorController::motorForwards(double speed){
 }
 
 /*
-Description:
-Input:
-Output:
+Function: Spins the wheel backwards
+Input: speed for the wheel
+Output: N/A
+Description: sends a signal to the motor to spin the right or left wheel backwards
 
 */
 void MotorController::motorBackwards(double speed){
@@ -131,9 +140,10 @@ void MotorController::motorBackwards(double speed){
 }
 
 /*
-Description:
-Input:
-Output:
+Function: Stops the motor from spinning
+Input: N/A
+Output: Sends a signal to motor to stop spinning
+Description: 
 
 */
 void MotorController::motorStop(){
