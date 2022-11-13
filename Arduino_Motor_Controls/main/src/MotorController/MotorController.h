@@ -39,7 +39,7 @@ class MotorController{
 
         int freq = 500;
         int resolution = 8;
-        int maxDutyCycle = 1;
+        int maxDutyCycle = 200;
 };
 
 #endif

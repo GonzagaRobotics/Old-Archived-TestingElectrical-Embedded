@@ -9,16 +9,17 @@ Description: Function file for MotorSet
 
 #include "MotorSet.h"
 
-/*
-Function: MotorSet()
-Input: N/A
-Output: N/A
-Description: Constructor for MotorSet, initializes variables
-*/
-MotorSet::MotorSet(){
-    // Setting the total number of current motors to 0
-    numMotors = 0;
-}
+// /*
+// Function: MotorSet()
+// Input: N/A
+// Output: N/A
+// Description: Constructor for MotorSet, initializes variables
+// */
+// MotorSet::MotorSet(){
+//     // Setting the total number of current motors to 0
+//     numMotors = 0;
+//     Serial.print("MotorSet created");
+// }
 
 /*
 Function: ~MotorSet()
@@ -60,7 +61,7 @@ Output: Changes all motors to the value
 Description: Spins the wheels forwards
 */
 void MotorSet::driveForwards(double speed){
-    for (int i; i < numMotors; i++) {
+    for (int i = 0; i < numMotors; i++) {
         set[i]->motorForwards(speed); // In set[] from 0 to numMotors, set each motor to backwards at the same speed
     }
 }
@@ -72,7 +73,7 @@ Output: Changes all motors to the value
 Description:
 */
 void MotorSet::driveBackwards(double speed){
-    for (int i; i < numMotors; i++) {
+    for (int i = 0; i < numMotors; i++) {
         set[i]->motorBackwards(speed); // In set[] from 0 to numMotors, set each motor to backwards at the same speed
     }
 }
@@ -84,7 +85,7 @@ Output: N/A
 Description: Stops motors
 */
 void MotorSet::stop(){
-    for (int i; i < numMotors; i++) {
+    for (int i = 0; i < numMotors; i++) {
         set[i]->motorStop(); // In set[] from 0 to numMotors, set each motor to stop
     }
 }
@@ -96,7 +97,7 @@ Output: Rover spins left
 Description: Spins left
 */
 void MotorSet::spinLeft(double speed){
-    for (int i; i < numMotors; i++) {
+    for (int i = 0; i < numMotors; i++) {
         if (set[i]->getSide() == 'l') { // If the motor is on the left
             set[i]->motorBackwards(speed); // Then move backwards
         } else {
@@ -112,7 +113,7 @@ Output: Rover spins right
 Description: Spins right
 */
 void MotorSet::spinRight(double speed){
-    for (int i; i < numMotors; i++) {
+    for (int i = 0; i < numMotors; i++) {
         if (set[i]->getSide() == 'r') { // If the motor is on the right
             set[i]->motorBackwards(speed); // Then move backwards
         } else {

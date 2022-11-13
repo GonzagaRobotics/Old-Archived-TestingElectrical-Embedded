@@ -23,7 +23,6 @@ Description: Declares an instance of a set of motors (all wheels in a rover)
 */
 class MotorSet{
     public:
-        MotorSet();
         ~MotorSet();
 
         void driveForwards(double);
@@ -35,7 +34,7 @@ class MotorSet{
         void addMotor(int, int, int, int, char);
     private:
         MotorController* set[maxMotors];
-        int numMotors;
+        int numMotors = 0;
         
 };
 
