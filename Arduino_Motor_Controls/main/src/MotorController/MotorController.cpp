@@ -8,7 +8,6 @@ Description: Functions for Motorcontroller
 */
 
 #include "MotorController.h"
-#include <stdlib.h>
 
 // TO DO
 /*
@@ -122,7 +121,7 @@ void MotorController::motorMove(double speed){
         speed = -1;
 
     // Adjusting the pwm channel to the inputted speed
-    ledcWrite(pwmChannel, maxDutyCycle * abs(speed));
+    ledcWrite(pwmChannel, maxDutyCycle * returnAbs(speed));
 
 
     if (speed == 0) { // If speed is 0, set both to low
@@ -160,4 +159,13 @@ Description: Getter for the side variable
 char MotorController::getSide(){
     // returns what side the motor is on
     return side;
+}
+
+
+double returnAbs(double num){
+    if(num >= 0)
+        return num;
+    else
+        return -1*num;
+
 }
