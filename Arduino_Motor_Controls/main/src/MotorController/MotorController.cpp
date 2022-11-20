@@ -8,6 +8,7 @@ Description: Functions for Motorcontroller
 */
 
 #include "MotorController.h"
+#include <stdlib.h>
 
 // TO DO
 /*
@@ -103,6 +104,36 @@ void MotorController::motorBackwards(double speed){
     } else if(side == 'l'){
         digitalWrite(pin1, LOW);
         digitalWrite(pin2, HIGH);
+    }
+}
+
+/*
+Function: motorMove()
+Input: speed for the wheel (between -1 and 1)
+Output: N/A
+Description: sends a signal to the motor at a speed between -1 and 1,
+             -1 is backwards, 1 is forwards, 0 is stop
+*/
+void MotorController::motorMove(double speed){
+    // Making sure speed is between -1 and 1, inclusive
+    if(speed > 1)
+        speed = 1;
+    else if(speed < -1)
+        speed = -1;
+
+    // Adjusting the pwm channel to the inputted speed
+    ledcWrite(pwmChannel, maxDutyCycle * abs(speed));
+
+
+    if (speed == 0) { // If speed is 0, set both to low
+        digitalWrite(pin1, LOW);
+        digitalWrite(pin2, LOW);
+    } else if ((side == 'r' && speed > 0) || (side == 'l' && speed < 0)) {
+        digitalWrite(pin1, LOW); // If speed is positive, and right side,
+        digitalWrite(pin2, HIGH); // or speed is negative, and left side
+    } else {
+        digitalWrite(pin1, HIGH); // If speed is positive, and left side,
+        digitalWrite(pin2, LOW); // or speed is negative, and right side
     }
 }
 

@@ -27,6 +27,7 @@ class MotorController{
 
         void motorForwards(double speed);
         void motorBackwards(double speed);
+        void motorMove(double speed);
         void motorStop();
 
         char getSide();
