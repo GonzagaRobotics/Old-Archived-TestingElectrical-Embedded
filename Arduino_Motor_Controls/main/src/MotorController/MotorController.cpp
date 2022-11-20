@@ -9,6 +9,15 @@ Description: Functions for Motorcontroller
 
 #include "MotorController.h"
 
+// TO DO
+/*
+pinMode
+ledcSetup
+ledcAttachPin
+ledcWrite
+digitalWrite
+*/
+
 /*
 Function: MotorController()
 Input: pin1, pin2, pinEn, pwm channel, side the motor is on (left = 'l', right = 'r')

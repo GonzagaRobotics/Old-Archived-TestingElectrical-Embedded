@@ -10,7 +10,6 @@ Description: Header file for MotorSet
 #define MOTOR_SET_H
 
 #include "../MotorController/MotorController.h"
-#include <Arduino.h>
 
 
 #define maxMotors 8

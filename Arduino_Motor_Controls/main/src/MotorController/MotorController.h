@@ -10,7 +10,7 @@ Description: Header file for MotorController
 #ifndef MOTOR_CONTROLLER_H
 #define MOTOR_CONTROLLER_H
 
-#include <Arduino.h>
+//#include <Arduino.h>
 
 
 /*
