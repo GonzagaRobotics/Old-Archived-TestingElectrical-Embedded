@@ -26,7 +26,6 @@ class MotorController{
 
         void motorForwards(double speed);
         void motorBackwards(double speed);
-        void motorMove(double speed);
         void motorStop();
 
         char getSide();
@@ -40,8 +39,6 @@ class MotorController{
         int freq = 500;
         int resolution = 8;
         int maxDutyCycle = 150;
-
-        double returnAbs(double);
 };
 
 #endif
