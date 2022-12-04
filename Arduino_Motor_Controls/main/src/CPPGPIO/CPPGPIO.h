@@ -9,6 +9,8 @@ Description: Header file for ESP32 GPIO in C++
 #ifndef CPPGPIO_H
 #define CPPGPIO_H
 
+#define somePointer (*((volatile uint8_t *) 0x00))
+
 
 void setPinMode(int, int);
 void setUpPWMChannel(int, int, int);
