@@ -8,6 +8,8 @@ Description: Functions for Motorcontroller
 */
 
 #include "MotorController.h"
+#include "../CPPGPIO/CPPGPIO.h"
+
 
 // TO DO
 /*
@@ -28,15 +30,15 @@ Description: Sets up the pins for the motorcontroller and tells which side
 */
 MotorController::MotorController(int pin1, int pin2, int pinEn, int pwmChannel, char side){
     // Setting up pin 1
-    pinMode(pin1, OUTPUT);
+    setPinMode(pin1, 1);
     this->pin1 = pin1;
     
     // Setting up pin 2
-    pinMode(pin2, OUTPUT);
+    setPinMode(pin2, 1);
     this->pin2 = pin2;
 
     // Setting up enable pin
-    pinMode(pinEn, OUTPUT);
+    setPinMode(pinEn, 1);
     this->pinEn = pinEn;
 
     // Setting the side
@@ -46,8 +48,8 @@ MotorController::MotorController(int pin1, int pin2, int pinEn, int pwmChannel, 
     this->pwmChannel = pwmChannel;
 
     // Setting up the pwm channel and attaching to the enable pin
-    ledcSetup(pwmChannel, freq, resolution);
-    ledcAttachPin(this->pinEn, pwmChannel);
+    setUpPWMChannel(pwmChannel, freq, resolution);
+    attachPWMChannel(this->pinEn, pwmChannel);
 }
 
 /*
@@ -65,16 +67,16 @@ void MotorController::motorForwards(double speed){
         speed = 0;
 
     // Adjusting the pwm channel to the inputted speed
-    ledcWrite(pwmChannel, maxDutyCycle * speed);
+    writePWMChannel(pwmChannel, maxDutyCycle * speed);
 
     // Setting pin 1 and pin 2 to spin the motor forwards
     // Note: Forwards is dependent on which side the motor is on
     if(side == 'r'){
-        digitalWrite(pin1, LOW);
-        digitalWrite(pin2, HIGH);
+        digitalOutput(pin1, 0);
+        digitalOutput(pin2, 1);
     } else if(side == 'l'){
-        digitalWrite(pin1, HIGH);
-        digitalWrite(pin2, LOW);
+        digitalOutput(pin1, 1);
+        digitalOutput(pin2, 0);
     }
 }
 
@@ -93,16 +95,16 @@ void MotorController::motorBackwards(double speed){
         speed = 0;
 
     // Adjusting the pwm channel to the inputted speed
-    ledcWrite(pwmChannel, maxDutyCycle * speed);
+    writePWMChannel(pwmChannel, maxDutyCycle * speed);
 
     // Setting pin 1 and pin 2 to spin the motor backwards
     // Note: Backwards is dependent on which side the motor is on
     if(side == 'r'){
-        digitalWrite(pin1, HIGH);
-        digitalWrite(pin2, LOW);
+        digitalOutput(pin1, 1);
+        digitalOutput(pin2, 0);
     } else if(side == 'l'){
-        digitalWrite(pin1, LOW);
-        digitalWrite(pin2, HIGH);
+        digitalOutput(pin1, 0);
+        digitalOutput(pin2, 1);
     }
 }
 
@@ -121,18 +123,18 @@ void MotorController::motorMove(double speed){
         speed = -1;
 
     // Adjusting the pwm channel to the inputted speed
-    ledcWrite(pwmChannel, maxDutyCycle * returnAbs(speed));
+    writePWMChannel(pwmChannel, maxDutyCycle * returnAbs(speed));
 
 
     if (speed == 0) { // If speed is 0, set both to low
-        digitalWrite(pin1, LOW);
-        digitalWrite(pin2, LOW);
+        digitalOutput(pin1, 0);
+        digitalOutput(pin2, 0);
     } else if ((side == 'r' && speed > 0) || (side == 'l' && speed < 0)) {
-        digitalWrite(pin1, LOW); // If speed is positive, and right side,
-        digitalWrite(pin2, HIGH); // or speed is negative, and left side
+        digitalOutput(pin1, 0); // If speed is positive, and right side,
+        digitalOutput(pin2, 1); // or speed is negative, and left side
     } else {
-        digitalWrite(pin1, HIGH); // If speed is positive, and left side,
-        digitalWrite(pin2, LOW); // or speed is negative, and right side
+        digitalOutput(pin1, 1); // If speed is positive, and left side,
+        digitalOutput(pin2, 0); // or speed is negative, and right side
     }
 }
 
@@ -145,8 +147,8 @@ Description:
 */
 void MotorController::motorStop(){
     // Writing low to pin 1 and pin 2 will cause the motor to stop
-    digitalWrite(pin1, LOW);
-    digitalWrite(pin2, LOW);
+    digitalOutput(pin1, 0);
+    digitalOutput(pin2, 0);
 }
 
 /*
@@ -154,7 +156,6 @@ Function: getSide()
 Input: N/A
 Output: The side the motor is on 'l' or 'r'
 Description: Getter for the side variable
-
 */
 char MotorController::getSide(){
     // returns what side the motor is on

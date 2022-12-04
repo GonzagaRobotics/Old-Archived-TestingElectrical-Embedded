@@ -4,7 +4,6 @@ Author: Christine Cabero, Ben Pauka, Matthew VonWahlde, Cameron Zheng
 Date Created: 11/12/22
 Date Modified: 11/12/22
 Description: Function file for MotorSet
-
 */
 
 #include "MotorSet.h"

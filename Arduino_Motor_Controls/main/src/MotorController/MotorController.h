@@ -4,7 +4,6 @@ Author: Christine Cabero, Ben Pauka, Matthew VonWahlde, Cameron Zheng
 Date Created: 11/12/22
 Date Modified: 11/12/22
 Description: Header file for MotorController
-
 */
 
 #ifndef MOTOR_CONTROLLER_H
