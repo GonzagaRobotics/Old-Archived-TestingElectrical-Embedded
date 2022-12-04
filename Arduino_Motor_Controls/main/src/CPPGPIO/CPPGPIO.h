@@ -10,7 +10,7 @@ Description: Header file for ESP32 GPIO in C++
 #define CPPGPIO_H
 
 
-void setPinMode(int, int);
+void setOutputPin(int);
 void setUpPWMChannel(int, int, int);
 void attachPWMChannel(int, int);
 

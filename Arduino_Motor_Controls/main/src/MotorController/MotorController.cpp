@@ -31,15 +31,15 @@ Description: Sets up the pins for the motorcontroller and tells which side
 */
 MotorController::MotorController(int pin1, int pin2, int pinEn, int pwmChannel, char side){
     // Setting up pin 1
-    pinMode(pin1, 1);
+    pinMode(pin1, OUTPUT);
     this->pin1 = pin1;
     
     // Setting up pin 2
-    pinMode(pin2, 1);
+    pinMode(pin2, OUTPUT);
     this->pin2 = pin2;
 
     // Setting up enable pin
-    pinMode(pinEn, 1);
+    pinMode(pinEn, OUTPUT);
     this->pinEn = pinEn;
 
     // Setting the side
@@ -73,11 +73,11 @@ void MotorController::motorForwards(double speed){
     // Setting pin 1 and pin 2 to spin the motor forwards
     // Note: Forwards is dependent on which side the motor is on
     if(side == 'r'){
-        digitalWrite(pin1, 0);
-        digitalWrite(pin2, 1);
+        digitalWrite(pin1, LOW);
+        digitalWrite(pin2, HIGH);
     } else if(side == 'l'){
-        digitalWrite(pin1, 1);
-        digitalWrite(pin2, 0);
+        digitalWrite(pin1, HIGH);
+        digitalWrite(pin2, LOW);
     }
 }
 
@@ -101,11 +101,11 @@ void MotorController::motorBackwards(double speed){
     // Setting pin 1 and pin 2 to spin the motor backwards
     // Note: Backwards is dependent on which side the motor is on
     if(side == 'r'){
-        digitalWrite(pin1, 1);
-        digitalWrite(pin2, 0);
+        digitalWrite(pin1, HIGH);
+        digitalWrite(pin2, LOW);
     } else if(side == 'l'){
-        digitalWrite(pin1, 0);
-        digitalWrite(pin2, 1);
+        digitalWrite(pin1, LOW);
+        digitalWrite(pin2, HIGH);
     }
 }
 
@@ -119,8 +119,8 @@ Description:
 */
 void MotorController::motorStop(){
     // Writing low to pin 1 and pin 2 will cause the motor to stop
-    digitalWrite(pin1, 0);
-    digitalWrite(pin2, 0);
+    digitalWrite(pin1, LOW);
+    digitalWrite(pin2, LOW);
 }
 
 /*
