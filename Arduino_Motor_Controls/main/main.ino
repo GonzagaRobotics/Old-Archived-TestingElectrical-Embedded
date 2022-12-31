@@ -1,5 +1,5 @@
 // File used to test library functionality
-
+/*
 #include "src/MotorController/MotorController.h"
 #include "src/MotorSet/MotorSet.h"
 
@@ -51,3 +51,4 @@ void loop() {
   motors->stop();
   delay(1000);
 }
+*/

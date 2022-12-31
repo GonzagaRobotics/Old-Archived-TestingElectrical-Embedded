@@ -38,3 +38,18 @@ void loop() {
   delay(1000);
 }
 */
+
+void setup(){
+  pinMode(27, OUTPUT);
+  pinMode(26, OUTPUT);
+}
+
+void loop(){
+  digitalWrite(27, HIGH);
+  digitalWrite(26, HIGH);
+  delay(1000);
+
+  digitalWrite(27, LOW);
+  digitalWrite(26, LOW);
+  delay(1000);
+}
