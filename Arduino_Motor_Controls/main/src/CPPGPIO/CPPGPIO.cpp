@@ -8,57 +8,74 @@ Description: Function file for ESP32 GPIO in C++
 
 #include "CPPGPIO.h"
 
-
-void setOutputPin(int pin, int direction){
+// This function sets a pin as a simple output pin
+// Inputs: the pin number to set as an output
+// Outputs: None
+void setOutputPin(int pin){
+    // Checking that the pin number is in between the max and min GPIO pin values
     if(pin < MIN_GPIO_PIN || pin > MAX_GPIO_PIN)
         return;
-
+    
     // To set as simple output GPIO_FUNCx_OUT_SEL_CFG = 0x100
     //      First 8 bits are GPIO_FUNCx_OUT_SEL
-    volatile unsigned int* pinFuncSelReg = REGISTER_ADDRESS + 0x530 + (4*pin);
-    *pinFuncSelReg |= 0x100;
-
+    //volatile unsigned int pinFuncSelReg = GPIO_BASE_ADDRESS + GPIO_FUNCn_OUT_SEL_CFG_REG + 0x4*pin;
+    //pinFuncSelReg &= 0xE00;
+    // pinFuncSelReg |= 0x100;
+    Serial.print(GPIO_FUNC27_OUT_SEL_CFG_REG);
+    Serial.print(" ");
+    GPIO_FUNC27_OUT_SEL_CFG_REG &= 0xE00;
+    GPIO_FUNC27_OUT_SEL_CFG_REG |= 0x100;
+    Serial.print(GPIO_FUNC27_OUT_SEL_CFG_REG);
+    Serial.print(" ");
     // Set as always enable GPIO_FUNCx_OUT_SEL_CFG
-    //      Set the CPIO_FUNCx_OEN_SEL bit 
-    *pinFuncSelReg |= 0x400;
-
-    // Set the bit the GPIO_ENABLE_DATAx in GPIO_ENABLE(0 or 1)_REG
-    volatile unsigned int* enableDataAddress;
+    //      Set the GPIO_FUNCx_OEN_SEL bit 
+    //pinFuncSelReg |= 0x400;
+    GPIO_FUNC27_OUT_SEL_CFG_REG |= 0x400;
+    Serial.print(GPIO_FUNC27_OUT_SEL_CFG_REG);
+    // Set the bit the GPIO_ENABLE_DATAx in GPIO_ENABLE(1)_REG
+    //volatile unsigned int enableDataReg;
     
     if(pin <= 31){
-        enableDataAddress = REGISTER_ADDRESS + 0x20 + power(2,pin);
-        *enableDataAddress |= 0x1;
+        //enableDataReg = GPIO_BASE_ADDRESS + GPIO_ENABLE_REG;
+        //enableDataReg |= (unsigned int) power(2, pin);
+        GPIO_ENABLE_REG |= (unsigned int) power(2,pin);
     } else {
-        enableDataAddress = REGISTER_ADDRESS + 0x2C + power(2,pin-32);
-        *enableDataAddress |= 0x1;
+        //enableDataReg = GPIO_BASE_ADDRESS + GPIO_ENABLE1_REG;
+        //enableDataReg |= (unsigned int) power(2,pin-32);
     }
 }
 
 
+// This function sets an output value for an initialized pin
+// Inputs: the pin number, and the desired value
+// Outputs: None
 void digitalOutput(int pin, int value){
-    // For the nth pin, set the nth bit in GPIO_OUT_DATA
+    // Checking that the pin number is in between the max and min GPIO pin values
     if(pin < MIN_GPIO_PIN || pin > MAX_GPIO_PIN)
         return;
-
-    volatile unsigned int* outputDataAddress;
     
+    // Holds the output data register location
+    //volatile unsigned int outputDataReg;
+    
+    // For the nth pin, set the nth bit in GPIO_OUT_DATA
     if(pin <= 31){
-        outputDataAddress = REGISTER_ADDRESS + 0x04;
+        //outputDataReg = GPIO_BASE_ADDRESS + GPIO_OUT_REG;
         if(value == 0)
-            *outputDataAddress &= (power(2,32) - 1) - power(2,pin);
-        else{
-            outputDataAddress += power(2,pin);
-            *outputDataAddress |= 0x1;
-        }
-        
+            //outputDataReg &= (unsigned int) (0xFFFFFFFF - power(2,pin));
+            GPIO_OUT_REG &= (unsigned int) (0xFFFFFFFF - power(2,pin));
+        else
+            //outputDataReg |= (unsigned int) power(2,pin);
+            GPIO_OUT_REG |= (unsigned int) power(2,pin);
     } else {
-        outputDataAddress = REGISTER_ADDRESS + 0x10;
+        //outputDataReg = GPIO_BASE_ADDRESS + GPIO_OUT1_REG;
+        
+        /*
         if(value == 0)
-            *outputDataAddress &= (power(2,8) - 1) - power(2,pin-32);
+            outputDataReg &= (unsigned int) (0xFF - power(2,pin));
         else{
-            outputDataAddress += power(2,pin-32);
-            *outputDataAddress |= 0x1;
+            outputDataReg |= (unsigned int) power(2,pin-32);
         }
+        */
     }
 }
 

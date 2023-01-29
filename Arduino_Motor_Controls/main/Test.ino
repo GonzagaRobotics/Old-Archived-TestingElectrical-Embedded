@@ -38,18 +38,17 @@ void loop() {
   delay(1000);
 }
 */
+#include "src/CPPGPIO/CPPGPIO.h"
 
 void setup(){
-  pinMode(27, OUTPUT);
-  pinMode(26, OUTPUT);
+    Serial.begin(9600);
+    setOutputPin(27);
 }
 
 void loop(){
-  digitalWrite(27, HIGH);
-  digitalWrite(26, HIGH);
+  digitalOutput(27, 1);
   delay(1000);
 
-  digitalWrite(27, LOW);
-  digitalWrite(26, LOW);
+  digitalWrite(27, 0);
   delay(1000);
 }

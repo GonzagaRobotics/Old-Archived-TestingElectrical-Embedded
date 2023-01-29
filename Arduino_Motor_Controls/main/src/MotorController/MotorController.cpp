@@ -30,15 +30,15 @@ Description: Sets up the pins for the motorcontroller and tells which side
 */
 MotorController::MotorController(int pin1, int pin2, int pinEn, int pwmChannel, char side){
     // Setting up pin 1
-    setPinMode(pin1, 1);
+    //setPinMode(pin1, 1);
     this->pin1 = pin1;
     
     // Setting up pin 2
-    setPinMode(pin2, 1);
+    //setPinMode(pin2, 1);
     this->pin2 = pin2;
 
     // Setting up enable pin
-    setPinMode(pinEn, 1);
+    //setPinMode(pinEn, 1);
     this->pinEn = pinEn;
 
     // Setting the side
