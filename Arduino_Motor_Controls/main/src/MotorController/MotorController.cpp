@@ -48,23 +48,25 @@ MotorController::MotorController(int pin1, int pin2, int pinEn, int pwmChannel, 
     this->pwmChannel = pwmChannel;
 
     // Setting up the pwm channel and attaching to the enable pin
-    setUpPWMChannel(pwmChannel, freq, resolution);
-    attachPWMChannel(this->pinEn, pwmChannel);
+    setUpPWMChannel(pin, pwmChannel, freq, resolution);
 }
 
 /*
 Function: motorForwards()
-Input: speed for the wheels (value between 0 and 1, inclusive)
+Input: speed for the wheels (value between -1 and 1, non-inclusive)
 Output: N/A
 Description: sends a signal to the motor to spin the right or left wheel forwards
 
 */
-void MotorController::motorForwards(double speed){
-    // Making sure speed is between 0 and 1, inclusive
+void MotorController::motorForwards(float speed){
+    // Making sure speed is between -1 and 1, inclusive
     if(speed > 1)
         speed = 1;
-    else if(speed < 0)
-        speed = 0;
+    else if(speed < -1)
+        speed = -1;
+
+    // Setting the value of speed to between 0 and 1
+    speed = speed * 0.5 + 0.5;
 
     // Adjusting the pwm channel to the inputted speed
     writePWMChannel(pwmChannel, maxDutyCycle * speed);

@@ -24,9 +24,9 @@ class MotorController{
     public:
         MotorController(int pin1, int pin2, int pinEn, int pwmChannel, char side);
 
-        void motorForwards(double speed);
-        void motorBackwards(double speed);
-        void motorMove(double speed);
+        void motorForwards(float speed);
+        void motorBackwards(float speed);
+        void motorMove(float speed);
         void motorStop();
 
         char getSide();
@@ -41,7 +41,7 @@ class MotorController{
         int resolution = 8;
         int maxDutyCycle = 150;
 
-        double returnAbs(double);
+        float returnAbs(float);
 };
 
 #endif

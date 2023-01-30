@@ -11,7 +11,7 @@ Description: Header file for MotorSet
 #include "../MotorController/MotorController.h"
 
 
-#define maxMotors 8
+#define maxMotors 3
 
 /*
 Function: MotorSet
@@ -21,6 +21,7 @@ Description: Declares an instance of a set of motors (all wheels in a rover)
 */
 class MotorSet{
     public:
+        MotorSet(char);
         ~MotorSet();
 
         void driveForwards(double);
@@ -31,10 +32,11 @@ class MotorSet{
         void turn(double);
         void turn(double, double);
 
-        void addMotor(int, int, int, int, char);
+        void addMotor(int, int, int, int);
     private:
-        MotorController* set[maxMotors];
+        MotorController* motorSet[maxMotors];
         int numMotors = 0;
+        char motorSide;
         
 };
 

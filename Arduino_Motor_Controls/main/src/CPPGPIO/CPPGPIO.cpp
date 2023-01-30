@@ -80,18 +80,17 @@ void digitalOutput(int pin, int value){
 }
 
 
-void setUpPWMChannel(int channel, int frequency, int resolution){
+void setUpPWMChannel(int pin, int channel, int frequency, int resolution){
+    // Setting up the pwm channel
+    ledcSetup(channel, frequency, resolution);
 
+    // Attaching pin to the pwm channel
+    ledcAttachPin(pin, channel);
 }
 
 
-void attachPWMChannel(int pin, int channel){
-
-}
-
-
-void writePWMChannel(int pin, int dutyCycle){
-
+void writePWMChannel(int channel, int dutyCycle){
+    ledcWrite(channel, dutyCycle);
 }
 
 int power(int base, int exp){

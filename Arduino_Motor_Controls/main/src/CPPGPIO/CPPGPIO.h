@@ -29,8 +29,7 @@ Description: Header file for ESP32 GPIO in C++
 #define GPIO_OUT1_REG 0x0010
 
 void setOutputPin(int);
-void setUpPWMChannel(int, int, int);
-void attachPWMChannel(int, int);
+void setUpPWMChannel(int, int, int, int);
 
 void digitalOutput(int, int);
 void writePWMChannel(int, int);
