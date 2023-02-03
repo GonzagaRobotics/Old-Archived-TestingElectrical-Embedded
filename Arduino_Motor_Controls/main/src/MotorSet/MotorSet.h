@@ -24,13 +24,11 @@ class MotorSet{
         MotorSet(char);
         ~MotorSet();
 
-        void driveForwards(double);
-        void driveBackwards(double);
+        void driveForwards(float);
+        void driveBackwards(float);
         void stop();
-        void spinLeft(double);
-        void spinRight(double);
-        void turn(double);
-        void turn(double, double);
+        void spinLeft(float);
+        void spinRight(float);
 
         void addMotor(int, int, int, int);
     private:

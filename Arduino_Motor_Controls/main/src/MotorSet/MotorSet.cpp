@@ -63,7 +63,7 @@ Input: A speed to go forwards
 Output: Changes all motors to the value
 Description: Spins the wheels forwards
 */
-void MotorSet::driveForwards(double speed){
+void MotorSet::driveForwards(float speed){
     for (int i = 0; i < numMotors; i++) {
         // In set[] from 0 to numMotors, set each motor to backwards at the same speed
         motorSet[i]->motorForwards(speed); 
@@ -76,7 +76,7 @@ Input: A speed to go backwards
 Output: Changes all motors to the value
 Description:
 */
-void MotorSet::driveBackwards(double speed){
+void MotorSet::driveBackwards(float speed){
     for (int i = 0; i < numMotors; i++) {
         // In set[] from 0 to numMotors, set each motor to backwards at the same speed
         motorSet[i]->motorBackwards(speed); 
