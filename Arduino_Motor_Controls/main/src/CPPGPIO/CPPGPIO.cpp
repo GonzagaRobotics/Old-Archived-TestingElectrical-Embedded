@@ -12,6 +12,7 @@ Description: Function file for ESP32 GPIO in C++
 // Inputs: the pin number to set as an output
 // Outputs: None
 void setOutputPin(int pin){
+    /*
     // Checking that the pin number is in between the max and min GPIO pin values
     if(pin < MIN_GPIO_PIN || pin > MAX_GPIO_PIN)
         return;
@@ -43,6 +44,17 @@ void setOutputPin(int pin){
         //enableDataReg = GPIO_BASE_ADDRESS + GPIO_ENABLE1_REG;
         //enableDataReg |= (unsigned int) power(2,pin-32);
     }
+    */
+
+   pinMode(pin, OUTPUT);
+}
+
+
+// This function sets a pin as a simple input pin
+// Inputs: the pin number to set as an input
+// Outputs: None
+void setInputPin(int pin){
+    pinMode(pin, INPUT);
 }
 
 
@@ -50,6 +62,7 @@ void setOutputPin(int pin){
 // Inputs: the pin number, and the desired value
 // Outputs: None
 void digitalOutput(int pin, int value){
+    /*
     // Checking that the pin number is in between the max and min GPIO pin values
     if(pin < MIN_GPIO_PIN || pin > MAX_GPIO_PIN)
         return;
@@ -69,14 +82,22 @@ void digitalOutput(int pin, int value){
     } else {
         //outputDataReg = GPIO_BASE_ADDRESS + GPIO_OUT1_REG;
         
-        /*
-        if(value == 0)
-            outputDataReg &= (unsigned int) (0xFF - power(2,pin));
-        else{
-            outputDataReg |= (unsigned int) power(2,pin-32);
-        }
-        */
+        
+        //if(value == 0)
+        //    outputDataReg &= (unsigned int) (0xFF - power(2,pin));
+        //else{
+        //    outputDataReg |= (unsigned int) power(2,pin-32);
+        //}
+        
     }
+    */
+   
+    if(value == 0)
+        digitalWrite(pin,LOW);
+    else
+        digitalWrite(pin,HIGH);
+
+
 }
 
 
