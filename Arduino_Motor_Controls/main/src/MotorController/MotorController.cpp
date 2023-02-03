@@ -2,7 +2,7 @@
 Title: MotorController.cpp
 Author: Christine Cabero, Ben Pauka, Matthew VonWahlde, Cameron Zheng
 Date Created: 11/12/22
-Date Modified: 11/12/22
+Date Modified: 2/2/23
 Description: Functions for Motorcontroller
 
 */
@@ -53,7 +53,7 @@ MotorController::MotorController(int pin1, int pin2, int pinEn, int pwmChannel, 
 
 /*
 Function: motorForwards()
-Input: speed for the wheels (value between -1 and 1, non-inclusive)
+Input: speed for the wheels (value between 0 and 1, non-inclusive)
 Output: N/A
 Description: sends a signal to the motor to spin the right or left wheel forwards
 
@@ -62,8 +62,8 @@ void MotorController::motorForwards(float speed){
     // Making sure speed is between -1 and 1, inclusive
     if(speed > 1)
         speed = 1;
-    else if(speed < -1)
-        speed = -1;
+    else if(speed < 0)
+        speed = 0;
 
     // Setting the value of speed to between 0 and 1
     speed = speed * 0.5 + 0.5;
@@ -89,7 +89,7 @@ Output: N/A
 Description: sends a signal to the motor to spin the right or left wheel backwards
 
 */
-void MotorController::motorBackwards(double speed){
+void MotorController::motorBackwards(float speed){
     // Making sure speed is between 0 and 1, inclusive
     if(speed > 1)
         speed = 1;
@@ -110,13 +110,13 @@ void MotorController::motorBackwards(double speed){
     }
 }
 
-/*
+/* I don't think this function is necessary
 Function: motorMove()
 Input: speed for the wheel (between -1 and 1)
 Output: N/A
 Description: sends a signal to the motor at a speed between -1 and 1,
              -1 is backwards, 1 is forwards, 0 is stop
-*/
+
 void MotorController::motorMove(double speed){
     // Making sure speed is between -1 and 1, inclusive
     if(speed > 1)
@@ -139,6 +139,7 @@ void MotorController::motorMove(double speed){
         digitalOutput(pin2, 0); // or speed is negative, and right side
     }
 }
+*/
 
 /*
 Function: motorStop()

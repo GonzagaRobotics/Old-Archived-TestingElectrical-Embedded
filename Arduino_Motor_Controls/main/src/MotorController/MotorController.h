@@ -2,7 +2,7 @@
 Title: MotorController.h
 Author: Christine Cabero, Ben Pauka, Matthew VonWahlde, Cameron Zheng
 Date Created: 11/12/22
-Date Modified: 11/12/22
+Date Modified: 2/2/23
 Description: Header file for MotorController
 */
 
@@ -26,7 +26,7 @@ class MotorController{
 
         void motorForwards(float speed);
         void motorBackwards(float speed);
-        void motorMove(float speed);
+        //void motorMove(float speed);
         void motorStop();
 
         char getSide();

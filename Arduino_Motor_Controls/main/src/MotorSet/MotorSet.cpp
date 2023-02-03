@@ -2,7 +2,7 @@
 Title: MotorSet.cpp
 Author: Christine Cabero, Ben Pauka, Matthew VonWahlde, Cameron Zheng
 Date Created: 11/12/22
-Date Modified: 11/12/22
+Date Modified: 2/2/23
 Description: Function file for MotorSet, controls the motors on one side of the
             rover (i.e. the right set of motors or the left set)
 */
@@ -102,7 +102,7 @@ Input: Turning speed
 Output: Rover spins left
 Description: Spins left
 */
-void MotorSet::spinLeft(double speed){
+void MotorSet::spinLeft(float speed){
     for (int i = 0; i < numMotors; i++) {
         // If the motor is on the left
         if (motorSet[i]->getSide() == 'l') { 
@@ -121,7 +121,7 @@ Input: Turning speed
 Output: Rover spins right
 Description: Spins right
 */
-void MotorSet::spinRight(double speed){
+void MotorSet::spinRight(float speed){
     for (int i = 0; i < numMotors; i++) {
         // If the motor is on the right
         if (motorSet[i]->getSide() == 'r') { 
