@@ -6,6 +6,7 @@ Date Modified: 2/2/23
 Description: Header file for ESP32 GPIO in C++
 */
 #include <Arduino.h>
+#include "../MotorSet/MotorSet.h"
 
 #ifndef CPPGPIO_H
 #define CPPGPIO_H
@@ -27,6 +28,9 @@ Description: Header file for ESP32 GPIO in C++
 #define GPIO_ENABLE1_REG 0x002C
 //#define GPIO_OUT_REG 0x0004
 #define GPIO_OUT1_REG 0x0010
+
+MotorSet* addPinsToLeftMotorSet();
+MotorSet* addPinsToRightMotorSet();
 
 void setOutputPin(int);
 void setInputPin(int);

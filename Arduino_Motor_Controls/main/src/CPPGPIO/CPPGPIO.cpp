@@ -8,6 +8,85 @@ Description: Function file for ESP32 GPIO in C++
 
 #include "CPPGPIO.h"
 
+
+// This function adds motors to the left microcontroller
+// Inputs: None
+// Outputs: pointer to the left MotorSet
+MotorSet* addPinsToLeftMotorSet(){
+    // All directions are from the perspective of the rover's POV
+    
+    // Left microcontroller (motors 1 - 3)
+    // Pins for the first motor (front left)
+    int motor1Pin1 = -1;
+    int motor1Pin2 = -1;
+    int motor1PinEn = -1;
+    int motor1PWMChannel = 0;
+    char motor1Side = 'l';
+
+    // Pins for the second motor (middle left)
+    int motor2Pin1 = -1;
+    int motor2Pin2 = -1;
+    int motor2PinEn = -1;
+    int motor2PWMChannel = 1;
+    char motor2Side = 'l';
+
+    // Pins for the third motor (back left)
+    int motor3Pin1 = -1;
+    int motor3Pin2 = -1;
+    int motor3PinEn = -1;
+    int motor3PWMChannel = 2;
+    char motor3Side = 'l';
+
+    // Creating pointer to new MotorSet
+    MotorSet* leftMotorSet = new MotorSet;
+
+    // Adding motors to left MotorSet
+    leftMotorSet->addMotor(motor1Pin1, motor1Pin2, motor1PinEn, motor1PWMChannel, motor1Side);
+    leftMotorSet->addMotor(motor2Pin1, motor2Pin2, motor2PinEn, motor2PWMChannel, motor2Side);
+    leftMotorSet->addMotor(motor3Pin1, motor3Pin2, motor3PinEn, motor3PWMChannel, motor3Side);
+
+    return leftMotorSet;
+}
+
+
+// This function adds motors to the right microcontroller
+// Inputs: None
+// Outputs: pointer to the right MotorSet
+MotorSet* addPinsToLeftMotorSet(){
+    // Right microcontroller (motors 4 - 6)
+    // Pins for the fourth motor (front right)
+    int motor4Pin1 = -1;
+    int motor4Pin2 = -1;
+    int motor4PinEn = -1;
+    int motor4PWMChannel = 0;
+    char motor4Side = 'r';
+
+    // Pins for the fifth motor (middle right)
+    int motor5Pin1 = -1;
+    int motor5Pin2 = -1;
+    int motor5PinEn = -1;
+    int motor5PWMChannel = 1;
+    char motor5Side = 'r';
+
+    // Pins for the sixth motor (back right)
+    int motor6Pin1 = -1;
+    int motor6Pin2 = -1;
+    int motor6PinEn = -1;
+    int motor6PWMChannel = 2;
+    char motor6Side = 'r';
+
+    // Creating pointer to new MotorSet
+    MotorSet* rightMotorSet = new MotorSet;
+
+    // Adding motors to right MotorSet
+    rightMotorSet->addMotor(motor4Pin1, motor4Pin2, motor4PinEn, motor4PWMChannel, motor4Side);
+    rightMotorSet->addMotor(motor5Pin1, motor5Pin2, motor5PinEn, motor5PWMChannel, motor5Side);
+    rightMotorSet->addMotor(motor6Pin1, motor6Pin2, motor6PinEn, motor6PWMChannel, motor6Side);
+
+    return rightMotorSet;
+}
+
+
 // This function sets a pin as a simple output pin
 // Inputs: the pin number to set as an output
 // Outputs: None

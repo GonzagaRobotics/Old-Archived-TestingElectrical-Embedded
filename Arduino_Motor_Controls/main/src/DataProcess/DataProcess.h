@@ -10,6 +10,7 @@ Description: Header file for DataProcess.cpp
 
 const float TRIGGER_RESTING_THRESHOLD = 0.95;
 const float TRIGGER_COMPRESSED_THRESHOLD = -0.95;
+const float TRIGGER_CHANGE_THRESHOLD = 0.05;
 const float SHOULDER_RESTING = 0;
 const float SHOULDER_COMPRESSED = 1;
 const float DPAD_RESTING = 0;
