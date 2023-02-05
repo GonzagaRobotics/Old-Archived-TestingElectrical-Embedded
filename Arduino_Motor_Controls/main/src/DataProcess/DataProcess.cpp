@@ -38,56 +38,90 @@ void dataHandling(float dataArr[], MotorSet* leftSet, MotorSet* rightSet){
     bool rShoulderPressed = (rightShoulder == SHOULDER_COMPRESSED);
     bool dpadPressed = (dpad != DPAD_RESTING);
 
+    //Left and right speed buffer
+    float leftSpeedCurrent;
+    static float leftSpeedPrevious = 0;
+    float rightSpeedCurrent;
+    static float rightSpeedPrevious = 0;
+
+
     // Main Process
     // Priority: Shoulders, bumpers, then dpad
-
+    
     // If the left trigger, left shoulder, dpad are not pressed
-    if(lTriggerPressed == false && lShoulderPressed == false && dpadPressed == false){
-        // Stop the left wheels
-        leftSet->stop();
+    leftSpeedCurrent = 0;
+    rightSpeedCurrent = 0;
+
+     // If only the dpad is pressed
+    if(dpadPressed == true && lTriggerPressed == false && rTriggerPressed == false && lShoulderPressed == false && rShoulderPressed == false) {
+        if(dpad == DPAD_LEFT){ // If left dpad is pressed
+            // Spin left
+            //leftSet->spinLeft(SPINNING_SPEED);
+            //rightSet->spinLeft(SPINNING_SPEED);
+            leftSpeedCurrent = -SPINNING_SPEED;
+            rightSpeedCurrent = SPINNING_SPEED;
+
+        } else if (dpad == DPAD_RIGHT){ // If right dpad is pressed
+            // Spin right
+            leftSpeedCurrent = SPINNING_SPEED;
+            rightSpeedCurrent = -SPINNING_SPEED;
+        }
     }
 
-    // If the right trigger, left shoulder, and dpad are not pressed
-    if(rTriggerPressed == false && rShoulderPressed == false && dpadPressed == false){
-        // Stop the right wheels
-        rightSet->stop();
+    // If left shoulder is pressed, and left trigger is not
+    if(lShoulderPressed == true){
+        // Set left wheels backwards
+        //leftSet->driveBackwards(BACKWARDS_SPEED);
+        leftSpeedCurrent = -BACKWARDS_SPEED;
+    }
+
+    // If right shoulder is pressed, and right trigger is not
+    if(rShoulderPressed == true){ 
+        // Set right wheels backwards
+        //rightSet->driveBackwards(BACKWARDS_SPEED);
+        rightSpeedCurrent = -BACKWARDS_SPEED;
     }
 
     // If left trigger is pressed
     if(lTriggerPressed == true){ 
         // Set left wheels forwards
-        leftSet->driveForwards(setTriggerWheelSpeed(leftTrigger));
+        //leftSet->driveForwards(setTriggerWheelSpeed(leftTrigger));
+        leftSpeedCurrent = setTriggerWheelSpeed(leftTrigger);
     }
 
     // If right trigger is pressed
     if(rTriggerPressed == true){ 
         // Set right wheels forward
-        rightSet->driveForwards(setTriggerWheelSpeed(rightTrigger));
+        //rightSet->driveForwards(setTriggerWheelSpeed(rightTrigger));
+        rightSpeedCurrent = setTriggerWheelSpeed(rightTrigger);
     }
 
-    // If left shoulder is pressed, and left trigger is not
-    if(lShoulderPressed == true && lTriggerPressed == false){
-        // Set left wheels backwards
-        leftSet->driveBackwards(BACKWARDS_SPEED);
-    }
-
-    // If right shoulder is pressed, and right trigger is not
-    if(rShoulderPressed == true && rTriggerPressed == false){ 
-        // Set right wheels backwards
-        rightSet->driveBackwards(BACKWARDS_SPEED);
-    }
-
-    // If only the dpad is pressed
-    if(lTriggerPressed == false && rTriggerPressed == false && lShoulderPressed == false && rShoulderPressed == false && dpadPressed == true)
-        if(dpad == DPAD_LEFT){ // If left dpad is pressed
-            // Spin left
-            leftSet->spinLeft(SPINNING_SPEED);
-            rightSet->spinLeft(SPINNING_SPEED);
-        } else if (dpad == DPAD_RIGHT){ // If right dpad is pressed
-            // Spin right
-            leftSet->spinRight(SPINNING_SPEED);
-            rightSet->spinRight(SPINNING_SPEED);
+    /* If leftSpeedCurrent is sufficiently different than leftSpeedPrevious,
+    then execute the motor command, either stop if 0, drive forward if positive,
+    or drive backwards if negative*/ 
+    //If leftSpeedCurrent is different than leftSpeedPrevious, or leftSpeed is stopped and didnt already stop, then write to motor
+    if (absValue(leftSpeedCurrent - leftSpeedPrevious) > CHANGE_THRESHOLD || (leftSpeedCurrent == 0 && leftSpeedPrevious != 0)) {
+        if (leftSpeedCurrent == 0) { //If 0, then stop
+            leftSet->stop();
+        } else if (leftSpeedCurrent > 0) {
+            leftSet->driveForwards(leftSpeedCurrent); //If positive, then go forward
+        } else {
+            leftSet->driveBackwards(-leftSpeedCurrent); //If negative, then go backwards
         }
+        leftSpeedPrevious = leftSpeedCurrent; //Remember current speed for next loop
+    }
+    //If rightSpeedCurrent is different than rightSpeedPrevious, or rightSpeed is stopped and didnt already stop, then write to motor
+    if (absValue(rightSpeedCurrent - rightSpeedPrevious) > CHANGE_THRESHOLD || (rightSpeedCurrent == 0 && rightSpeedPrevious != 0)) {
+        if (rightSpeedCurrent == 0) { //If 0, then stop
+            rightSet->stop();
+        } else if (rightSpeedCurrent > 0) {
+            rightSet->driveForwards(rightSpeedCurrent); //If positive, then go forward
+        } else {
+            rightSet->driveBackwards(-rightSpeedCurrent); //If negative, then go backwards
+        }
+        rightSpeedPrevious = rightSpeedCurrent; //Remember current speed for next loop
+    }
+    
 }
 
 
@@ -104,4 +138,14 @@ float setTriggerWheelSpeed(float triggerVal){
 
     // Return trigger value converted into a float between 0 (stopped) and 1 (full speed)
     return triggerVal * (-1/2) + 1/2;
+}
+
+/*
+Function: absValue
+Input: float - value of the number
+Output: float - the absolute value of the number
+Description: Does the absolute value function on the number
+*/
+float absValue(float number) {
+    return number >= 0 ? number : -number;
 }

@@ -20,7 +20,11 @@ const float DPAD_RIGHT = -1;
 const float BACKWARDS_SPEED = 0.5;
 const float SPINNING_SPEED = 0.5;
 
+const float CHANGE_THRESHOLD = 0.005;
+
 
 void dataHandling(float[], MotorSet*, MotorSet*);
 
 float setTriggerWheelSpeed(float);
+
+float absValue(float);
