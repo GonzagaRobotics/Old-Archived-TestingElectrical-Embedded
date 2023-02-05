@@ -19,6 +19,10 @@ void dataHandling(float dataArr[], MotorSet* leftSet, MotorSet* rightSet){
     // Note to future self, make this so it remembers past values, and doesn't run through function
     // Ended up being a massive nest of conditionals that wouldn't have improved the speed by much
     // Worth considering for the triggers at least
+
+    // To do:
+    // Stop one motor
+    // Remembering past values
     
     // Setting values to variables for easier use in functions (and reading clarity)
     float leftTrigger = dataArr[0];
@@ -37,36 +41,50 @@ void dataHandling(float dataArr[], MotorSet* leftSet, MotorSet* rightSet){
     // Main Process
     // Priority: Shoulders, bumpers, then dpad
 
-    // If nothing is pressed, stop motors and return
-    if(lTriggerPressed == false && rTriggerPressed == false && lShoulderPressed == false && rShoulderPressed == false && dpadPressed == false){
+    // If the left trigger, left shoulder, dpad are not pressed
+    if(lTriggerPressed == false && lShoulderPressed == false && dpadPressed == false){
+        // Stop the left wheels
         leftSet->stop();
-        rightSet->stop();
-        return;
     }
 
-    if(lTriggerPressed == true){ // if left trigger is pressed
+    // If the right trigger, left shoulder, and dpad are not pressed
+    if(rTriggerPressed == false && rShoulderPressed == false && dpadPressed == false){
+        // Stop the right wheels
+        rightSet->stop();
+    }
+
+    // If left trigger is pressed
+    if(lTriggerPressed == true){ 
         // Set left wheels forwards
         leftSet->driveForwards(setTriggerWheelSpeed(leftTrigger));
     }
 
-    if(rTriggerPressed == true){ // if right trigger is pressed
+    // If right trigger is pressed
+    if(rTriggerPressed == true){ 
         // Set right wheels forward
         rightSet->driveForwards(setTriggerWheelSpeed(rightTrigger));
     }
 
-    if(lShoulderPressed == true && lTriggerPressed == false){ // if left shoulder is pressed, and left trigger is not
+    // If left shoulder is pressed, and left trigger is not
+    if(lShoulderPressed == true && lTriggerPressed == false){
+        // Set left wheels backwards
         leftSet->driveBackwards(BACKWARDS_SPEED);
     }
 
-    if(rShoulderPressed == true && rTriggerPressed == false){ // if right shoulder is pressed, and right trigger is not
+    // If right shoulder is pressed, and right trigger is not
+    if(rShoulderPressed == true && rTriggerPressed == false){ 
+        // Set right wheels backwards
         rightSet->driveBackwards(BACKWARDS_SPEED);
     }
 
+    // If only the dpad is pressed
     if(lTriggerPressed == false && rTriggerPressed == false && lShoulderPressed == false && rShoulderPressed == false && dpadPressed == true)
-        if(dpad == DPAD_LEFT){
+        if(dpad == DPAD_LEFT){ // If left dpad is pressed
+            // Spin left
             leftSet->spinLeft(SPINNING_SPEED);
             rightSet->spinLeft(SPINNING_SPEED);
-        } else if (dpad == DPAD_RIGHT){
+        } else if (dpad == DPAD_RIGHT){ // If right dpad is pressed
+            // Spin right
             leftSet->spinRight(SPINNING_SPEED);
             rightSet->spinRight(SPINNING_SPEED);
         }

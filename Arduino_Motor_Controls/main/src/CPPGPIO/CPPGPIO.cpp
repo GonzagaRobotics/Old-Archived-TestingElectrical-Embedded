@@ -52,7 +52,7 @@ MotorSet* addPinsToLeftMotorSet(){
 // This function adds motors to the right microcontroller
 // Inputs: None
 // Outputs: pointer to the right MotorSet
-MotorSet* addPinsToLeftMotorSet(){
+MotorSet* addPinsToRightMotorSet(){
     // Right microcontroller (motors 4 - 6)
     // Pins for the fourth motor (front right)
     int motor4Pin1 = -1;
