@@ -1,54 +1,134 @@
 // File used to test library functionality
-/*
-#include "src/MotorController/MotorController.h"
+
+#include "src/CPPGPIO/CPPGPIO.h"
+#include "src/DataProcess/DataProcess.h"
 #include "src/MotorSet/MotorSet.h"
 
-  int motor1Pin1 = 27;
-  int motor1Pin2 = 26;
-  int motor1PinEn = 14;
-  int motor1PwmChannel = 0;
-  char motor1Side = 'r';
+MotorSet* leftMotors = NULL;
+MotorSet* rightMotors = NULL;
 
-  int motor2Pin1 = 23;
-  int motor2Pin2 = 19;
-  int motor2PinEn = 22;
-  int motor2PwmChannel = 1;
-  char motor2Side = 'l';
+float controlData[5]; 
 
-  MotorSet* motors = new MotorSet();
 
 void setup() {
   // put your setup code here, to run once:
   Serial.begin(115200);
 
-  motors->addMotor(motor1Pin1, motor1Pin2, motor1PinEn, motor1PwmChannel, motor1Side);
-  motors->addMotor(motor2Pin1, motor2Pin2, motor2PinEn, motor2PwmChannel, motor2Side);
+  leftMotors = addPinsToLeftMotorSet();
+  rightMotors = addPinsToRightMotorSet();
 }
 
 void loop() {
   // put your main code here, to run repeatedly:
-  motors->driveForwards(1);
-  delay(1000);
+  
+  // Go forwards full speed
+  controlData[0] = -0.99999;
+  controlData[1] = -0.99999;
+  controlData[2] = 0;
+  controlData[3] = 0;
+  controlData[4] = 0;
 
-  motors->stop();
-  delay(1000);
+  dataHandling(controlData, leftMotors, rightMotors);
+  Serial.print("Full speed forwards.   ");
+  delay(5000);
 
-  motors->driveBackwards(1);
-  delay(1000);
+  // Slow Down to half speed
+  Serial.print("Slowing Down.   ");
+  for(int i = 1; i < 50; i++){
+    controlData[0] = -1 + i / 50;
+    controlData[1] = -1 + i / 50;
 
-  motors->stop();
-  delay(1000);
+    dataHandling(controlData, leftMotors, rightMotors);
+    delay(50);
+  }
 
-  motors->spinRight(1);
-  delay(1000);
+  Serial.print("Half speed forwards.   ");
+  delay(5000);
+  
+  // Turn Left
+  controlData[0] = 0;
+  controlData[1] = -0.99999;
 
-  motors->stop();
-  delay(1000);
+  dataHandling(controlData, leftMotors, rightMotors);
+  Serial.print("Turning left.   ");
+  delay(5000);
 
-  motors->spinLeft(1);
-  delay(1000);
+  // Turn Right
+  controlData[0] = -0.99999;
+  controlData[1] = 0;
 
-  motors->stop();
-  delay(1000);
+  dataHandling(controlData, leftMotors, rightMotors);
+  Serial.print("Turning right.   ");
+  delay(5000);
+
+  // Backwards
+  controlData[0] = 0.99999;
+  controlData[1] = 0.99999;
+  controlData[2] = 1;
+  controlData[3] = 1;
+
+  dataHandling(controlData, leftMotors, rightMotors);
+  Serial.print("Backwards.   ");
+  delay(5000);
+
+  // Left Side backwards
+  controlData[2] = 1;
+  controlData[3] = 0;
+
+  dataHandling(controlData, leftMotors, rightMotors);
+  Serial.print("Left side backwards.   ");
+  delay(5000);
+
+  // Left Side backwards, right side forwards
+  controlData[1] = -0.99999;
+
+  dataHandling(controlData, leftMotors, rightMotors);
+  Serial.print("Left side backwards, right side forwards.   ");
+  delay(5000);
+
+  // Right Side backwards
+  controlData[0] = 0.99999;
+  controlData[1] = 0.99999;
+  controlData[2] = 0;
+  controlData[3] = 1;
+
+  dataHandling(controlData, leftMotors, rightMotors);
+  Serial.print("Right side backwards.   ");
+  delay(5000);
+
+  // Right Side backwards, left side  forwards
+  controlData[0] = -0.99999;
+
+  dataHandling(controlData, leftMotors, rightMotors);
+  Serial.print("Right side backwards, left side forwards.   ");
+  delay(5000);
+
+  // Spinning left 
+  controlData[0] = 0.99999;
+  controlData[1] = 0.99999;
+  controlData[2] = 0;
+  controlData[3] = 0;
+  controlData[4] = 1;
+
+  dataHandling(controlData, leftMotors, rightMotors);
+  Serial.print("Spin left.   ");
+  delay(5000);
+
+  // Spinning Right 
+  controlData[4] = -1;
+
+  dataHandling(controlData, leftMotors, rightMotors);
+  Serial.print("Spin right.   ");
+  delay(5000);
+
+  // Stop 
+  controlData[0] = 0.99999;
+  controlData[1] = 0.99999;
+  controlData[2] = 0;
+  controlData[3] = 0;
+  controlData[4] = 0;
+
+  dataHandling(controlData, leftMotors, rightMotors);
+  Serial.print("Stopping.   ");
+  delay(5000);
 }
-*/

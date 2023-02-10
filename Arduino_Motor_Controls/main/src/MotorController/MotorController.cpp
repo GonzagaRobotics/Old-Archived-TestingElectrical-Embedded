@@ -48,7 +48,7 @@ MotorController::MotorController(int pin1, int pin2, int pinEn, int pwmChannel, 
     this->pwmChannel = pwmChannel;
 
     // Setting up the pwm channel and attaching to the enable pin
-    setUpPWMChannel(pin, pwmChannel, freq, resolution);
+    setUpPWMChannel(pinEn, pwmChannel, freq, resolution);
 }
 
 /*
