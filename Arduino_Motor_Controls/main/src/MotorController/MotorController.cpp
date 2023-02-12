@@ -41,7 +41,7 @@ MotorController::MotorController(int pin1, int pin2, int pwmChannel1, int pwmCha
     this->pwmChannel1 = pwmChannel1;
 
     // Setting the pwmChannel
-    this->pwmChannel = pwmChannel;
+    this->pwmChannel2 = pwmChannel2;
 
     // Setting the side
     this->side = side;
@@ -96,16 +96,18 @@ void MotorController::motorBackwards(float speed){
         speed = 0;
 
     // Adjusting the pwm channel to the inputted speed
-    writePWMChannel(pwmChannel, maxDutyCycle * speed);
+    // writePWMChannel(pwmChannel, maxDutyCycle * speed);
 
     // Setting pin 1 and pin 2 to spin the motor backwards
     // Note: Backwards is dependent on which side the motor is on
     if(side == 'r'){
-        digitalOutput(pin1, 1);
+        // digitalOutput(pin1, 1);
+        writePWMChannel(pwmChannel1, maxDutyCycle * speed);
         digitalOutput(pin2, 0);
     } else if(side == 'l'){
         digitalOutput(pin1, 0);
-        digitalOutput(pin2, 1);
+        // digitalOutput(pin2, 1);
+        writePWMChannel(pwmChannel2, maxDutyCycle * speed);
     }
 }
 
