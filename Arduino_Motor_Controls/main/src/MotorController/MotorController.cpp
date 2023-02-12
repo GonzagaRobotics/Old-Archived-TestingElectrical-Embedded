@@ -30,24 +30,27 @@ Description: Sets up the pins for the motorcontroller and tells which side
 */
 MotorController::MotorController(int pin1, int pin2, int pwmChannel1, int pwmChannel2, char side){
     // Setting up pin 1
-    //setPinMode(pin1, 1);
+    setPinMode(pin1, 1);
     this->pin1 = pin1;
     
     // Setting up pin 2
-    //setPinMode(pin2, 1);
+    setPinMode(pin2, 1);
     this->pin2 = pin2;
 
-    
+    // Declaring pwm channel 1
     this->pwmChannel1 = pwmChannel1;
 
-    // Setting the pwmChannel
-    this->pwmChannel = pwmChannel;
+    // Setting the pwm channel 2
+    this->pwmChannel2 = pwmChannel2;
 
     // Setting the side
     this->side = side;
 
-    // Setting up the pwm channel and attaching to the enable pin
-    setUpPWMChannel(pinEn, pwmChannel, freq, resolution);
+    // Setting up the pwm channel 1 and attaching to pin 1
+    setUpPWMChannel(pin1, pwmChannel1, freq, resolution);
+
+    // Setting up the pwm channel 2 and attaching to pin 2
+    setUpPWMChannel(pin2, pwmChannel2, freq, resolution);
 }
 
 /*
@@ -58,26 +61,25 @@ Description: sends a signal to the motor to spin the right or left wheel forward
 
 */
 void MotorController::motorForwards(float speed){
-    // Making sure speed is between -1 and 1, inclusive
+    // Making sure speed is between 0 and 1, inclusive
     if(speed > 1)
         speed = 1;
     else if(speed < 0)
         speed = 0;
-
-    // Setting the value of speed to between 0 and 1
-    speed = speed * 0.5 + 0.5;
-
-    // Adjusting the pwm channel to the inputted speed
-    writePWMChannel(pwmChannel, maxDutyCycle * speed);
-
+    
     // Setting pin 1 and pin 2 to spin the motor forwards
     // Note: Forwards is dependent on which side the motor is on
     if(side == 'r'){
-        digitalOutput(pin1, 0);
-        digitalOutput(pin2, 1);
+
+        writePWMChannel(pwmChannel1, 0);
+        writePWMChannel(pwmChannel2, maxDutyCycle * speed);
+        //digitalOutput(pin1, 0);
+        //digitalOutput(pin2, 1);
     } else if(side == 'l'){
-        digitalOutput(pin1, 1);
-        digitalOutput(pin2, 0);
+        writePWMChannel(pwmChannel1, maxDutyCycle * speed);
+        writePWMChannel(pwmChannel2, 0);
+        //digitalOutput(pin1, 1);
+        //digitalOutput(pin2, 0);
     }
 }
 
