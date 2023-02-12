@@ -28,7 +28,7 @@ Description: Sets up the pins for the motorcontroller and tells which side
              motors to communicate with
 
 */
-MotorController::MotorController(int pin1, int pin2, int pinEn, int pwmChannel, char side){
+MotorController::MotorController(int pin1, int pin2, int pwmChannel1, int pwmChannel2, char side){
     // Setting up pin 1
     //setPinMode(pin1, 1);
     this->pin1 = pin1;
@@ -37,15 +37,14 @@ MotorController::MotorController(int pin1, int pin2, int pinEn, int pwmChannel, 
     //setPinMode(pin2, 1);
     this->pin2 = pin2;
 
-    // Setting up enable pin
-    //setPinMode(pinEn, 1);
-    this->pinEn = pinEn;
-
-    // Setting the side
-    this->side = side;
+    
+    this->pwmChannel1 = pwmChannel1;
 
     // Setting the pwmChannel
     this->pwmChannel = pwmChannel;
+
+    // Setting the side
+    this->side = side;
 
     // Setting up the pwm channel and attaching to the enable pin
     setUpPWMChannel(pinEn, pwmChannel, freq, resolution);
@@ -166,7 +165,7 @@ char MotorController::getSide(){
 }
 
 
-double returnAbs(double num){
+float returnAbs(float num){
     if(num >= 0)
         return num;
     else

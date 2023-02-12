@@ -19,31 +19,31 @@ MotorSet* addPinsToLeftMotorSet(){
     // Pins for the first motor (front left)
     int motor1Pin1 = -1;
     int motor1Pin2 = -1;
-    int motor1PinEn = -1;
-    int motor1PWMChannel = 0;
+    int motor1PWMChannel1 = 0;
+    int motor1PWMChannel2 = 1;
     char motor1Side = 'l';
 
     // Pins for the second motor (middle left)
     int motor2Pin1 = -1;
     int motor2Pin2 = -1;
-    int motor2PinEn = -1;
-    int motor2PWMChannel = 1;
+    int motor2PWMChannel1 = 2;
+    int motor2PWMChannel2 = 3;
     char motor2Side = 'l';
 
     // Pins for the third motor (back left)
     int motor3Pin1 = -1;
     int motor3Pin2 = -1;
-    int motor3PinEn = -1;
-    int motor3PWMChannel = 2;
+    int motor3PWMChannel1 = 4;
+    int motor3PWMChannel2 = 5;
     char motor3Side = 'l';
 
     // Creating pointer to new MotorSet
     MotorSet* leftMotorSet = new MotorSet;
 
     // Adding motors to left MotorSet
-    leftMotorSet->addMotor(motor1Pin1, motor1Pin2, motor1PinEn, motor1PWMChannel, motor1Side);
-    leftMotorSet->addMotor(motor2Pin1, motor2Pin2, motor2PinEn, motor2PWMChannel, motor2Side);
-    leftMotorSet->addMotor(motor3Pin1, motor3Pin2, motor3PinEn, motor3PWMChannel, motor3Side);
+    leftMotorSet->addMotor(motor1Pin1, motor1Pin2, motor1PWMChannel1, motor1PWMChannel2, motor1Side);
+    leftMotorSet->addMotor(motor2Pin1, motor2Pin2, motor2PWMChannel1, motor2PWMChannel2, motor2Side);
+    leftMotorSet->addMotor(motor3Pin1, motor3Pin2, motor3PWMChannel1, motor3PWMChannel2, motor3Side);
 
     return leftMotorSet;
 }
@@ -57,31 +57,31 @@ MotorSet* addPinsToRightMotorSet(){
     // Pins for the fourth motor (front right)
     int motor4Pin1 = -1;
     int motor4Pin2 = -1;
-    int motor4PinEn = -1;
-    int motor4PWMChannel = 0;
+    int motor4PWMChannel1 = 0;
+    int motor4PWMChannel2 = 1;
     char motor4Side = 'r';
 
     // Pins for the fifth motor (middle right)
     int motor5Pin1 = -1;
     int motor5Pin2 = -1;
-    int motor5PinEn = -1;
-    int motor5PWMChannel = 1;
+    int motor5PWMChannel1 = 2;
+    int motor5PWMChannel2 = 3;
     char motor5Side = 'r';
 
     // Pins for the sixth motor (back right)
     int motor6Pin1 = -1;
     int motor6Pin2 = -1;
-    int motor6PinEn = -1;
-    int motor6PWMChannel = 2;
+    int motor6PWMChannel1 = 4;
+    int motor6PWMChannel2 = 5;
     char motor6Side = 'r';
 
     // Creating pointer to new MotorSet
     MotorSet* rightMotorSet = new MotorSet;
 
     // Adding motors to right MotorSet
-    rightMotorSet->addMotor(motor4Pin1, motor4Pin2, motor4PinEn, motor4PWMChannel, motor4Side);
-    rightMotorSet->addMotor(motor5Pin1, motor5Pin2, motor5PinEn, motor5PWMChannel, motor5Side);
-    rightMotorSet->addMotor(motor6Pin1, motor6Pin2, motor6PinEn, motor6PWMChannel, motor6Side);
+    rightMotorSet->addMotor(motor4Pin1, motor4Pin2, motor4PWMChannel1, motor4PWMChannel2, motor4Side);
+    rightMotorSet->addMotor(motor5Pin1, motor5Pin2, motor5PWMChannel1, motor5PWMChannel2, motor5Side);
+    rightMotorSet->addMotor(motor6Pin1, motor6Pin2, motor6PWMChannel1, motor6PWMChannel2, motor6Side);
 
     return rightMotorSet;
 }

@@ -14,7 +14,7 @@ Description: Header file for MotorController
 
 /*
 Class: MotorController
-Input: pin 1, pin 2, enable pin, pwm channel, and the side the motor is on (left = 'l', right = 'r')
+Input: pin 1, pin 2, pwm channel 1, pwm channel 2, and the side the motor is on (left = 'l', right = 'r')
 Output: N/A
 Description: This class represents one motor controller on the board. MotorSet uses and instance of this class for each of its motors
 
@@ -22,10 +22,10 @@ Description: This class represents one motor controller on the board. MotorSet u
 
 class MotorController{
     public:
-        MotorController(int pin1, int pin2, int pinEn, int pwmChannel, char side);
+        MotorController(int, int, int, int, char);
 
-        void motorForwards(float speed);
-        void motorBackwards(float speed);
+        void motorForwards(float);
+        void motorBackwards(float);
         //void motorMove(float speed);
         void motorStop();
 
@@ -33,8 +33,8 @@ class MotorController{
     private:
         int pin1;
         int pin2;
-        int pinEn;
-        int pwmChannel;
+        int pwmChannel1;
+        int pwmChannel2;
         char side;
 
         int freq = 500;

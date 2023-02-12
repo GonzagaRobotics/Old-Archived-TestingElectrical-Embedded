@@ -33,14 +33,14 @@ Input: pin 1, pin 2, enable pin, and enable pin
 Output: N/A
 Description: Adds an instance of MotorController to the motorSet array
 */
-void MotorSet::addMotor(int pin1, int pin2, int pinEn, int pwmChannel, char motorSide){
+void MotorSet::addMotor(int pin1, int pin2, int pwmChannel1, int pwmChannel2, char motorSide){
     // If the max number of motors has not been reached
     if(numMotors < maxMotors){
         // increment the number of motors
         numMotors++;
 
         // add a new motor to the set
-        motorSet[numMotors - 1] = new MotorController(pin1, pin2, pinEn, pwmChannel, motorSide);
+        motorSet[numMotors - 1] = new MotorController(pin1, pin2, pwmChannel1, pwmChannel2, motorSide);
     }
 }
 
