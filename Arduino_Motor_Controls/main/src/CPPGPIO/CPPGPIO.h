@@ -5,11 +5,12 @@ Date Created: 12/3/22
 Date Modified: 2/2/23
 Description: Header file for ESP32 GPIO in C++
 */
-#include <Arduino.h>
-#include "../MotorSet/MotorSet.h"
 
 #ifndef CPPGPIO_H
 #define CPPGPIO_H
+
+#include <Arduino.h>
+#include "../MotorSet/MotorSet.h"
 
 // Min and max GPIO pins for checking valid pin number
 #define MAX_GPIO_PIN 39

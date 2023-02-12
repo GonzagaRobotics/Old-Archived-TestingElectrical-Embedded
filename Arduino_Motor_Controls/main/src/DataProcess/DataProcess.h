@@ -6,6 +6,9 @@ Date Modified: 2/2/23
 Description: Header file for DataProcess.cpp
 */
 
+#ifndef DATA_PROCESS
+#define DATA_PROCESS
+
 #include "../MotorSet/MotorSet.h"
 
 const float TRIGGER_RESTING_THRESHOLD = 0.95;
@@ -28,3 +31,5 @@ void dataHandling(float[], MotorSet*, MotorSet*);
 float setTriggerWheelSpeed(float);
 
 float absValue(float);
+
+#endif
