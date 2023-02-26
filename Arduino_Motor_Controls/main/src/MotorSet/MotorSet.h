@@ -29,7 +29,7 @@ class MotorSet{
         void spinLeft(float);
         void spinRight(float);
 
-        void addMotor(int, int, int, int, char);
+        void addMotor(int, int, char);
     private:
         MotorController* motorSet[maxMotors];
         int numMotors = 0;

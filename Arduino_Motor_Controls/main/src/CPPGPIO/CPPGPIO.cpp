@@ -41,9 +41,9 @@ MotorSet* addPinsToLeftMotorSet(){
     MotorSet* leftMotorSet = new MotorSet;
 
     // Adding motors to left MotorSet
-    leftMotorSet->addMotor(motor1Pin1, motor1Pin2, motor1PWMChannel1, motor1PWMChannel2, motor1Side);
-    leftMotorSet->addMotor(motor2Pin1, motor2Pin2, motor2PWMChannel1, motor2PWMChannel2, motor2Side);
-    leftMotorSet->addMotor(motor3Pin1, motor3Pin2, motor3PWMChannel1, motor3PWMChannel2, motor3Side);
+    //leftMotorSet->addMotor(motor1Pin1, motor1Pin2, motor1PWMChannel1, motor1PWMChannel2, motor1Side);
+    //leftMotorSet->addMotor(motor2Pin1, motor2Pin2, motor2PWMChannel1, motor2PWMChannel2, motor2Side);
+    //leftMotorSet->addMotor(motor3Pin1, motor3Pin2, motor3PWMChannel1, motor3PWMChannel2, motor3Side);
 
     return leftMotorSet;
 }
@@ -55,7 +55,7 @@ MotorSet* addPinsToLeftMotorSet(){
 MotorSet* addPinsToRightMotorSet(){
     // Right microcontroller (motors 4 - 6)
     // Pins for the fourth motor (front right)
-    int motor4Pin1 = -1;
+    int motor4Pin1 = 0;
     int motor4Pin2 = -1;
     int motor4PWMChannel1 = 0;
     int motor4PWMChannel2 = 1;
@@ -79,9 +79,9 @@ MotorSet* addPinsToRightMotorSet(){
     MotorSet* rightMotorSet = new MotorSet;
 
     // Adding motors to right MotorSet
-    rightMotorSet->addMotor(motor4Pin1, motor4Pin2, motor4PWMChannel1, motor4PWMChannel2, motor4Side);
-    rightMotorSet->addMotor(motor5Pin1, motor5Pin2, motor5PWMChannel1, motor5PWMChannel2, motor5Side);
-    rightMotorSet->addMotor(motor6Pin1, motor6Pin2, motor6PWMChannel1, motor6PWMChannel2, motor6Side);
+    rightMotorSet->addMotor(motor4Pin1, motor4PWMChannel1, motor4Side);
+    //rightMotorSet->addMotor(motor5Pin1, motor5PWMChannel1, motor5Side);
+    //rightMotorSet->addMotor(motor6Pin1, motor6PWMChannel1, motor6Side);
 
     return rightMotorSet;
 }

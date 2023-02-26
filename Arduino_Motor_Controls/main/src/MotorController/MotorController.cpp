@@ -28,20 +28,20 @@ Description: Sets up the pins for the motorcontroller and tells which side
              motors to communicate with
 
 */
-MotorController::MotorController(int pin1, int pin2, int pwmChannel1, int pwmChannel2, char side){
+MotorController::MotorController(int pin1, int pwmChannel1, char side){
     // Setting up pin 1
     //setPinMode(pin1, 1);
     this->pin1 = pin1;
     
     // Setting up pin 2
     //setPinMode(pin2, 1);
-    this->pin2 = pin2;
+    //this->pin2 = pin2;
 
     // Declaring pwm channel 1
     this->pwmChannel1 = pwmChannel1;
 
     // Setting the pwm channel 2
-    this->pwmChannel2 = pwmChannel2;
+    //this->pwmChannel2 = pwmChannel2;
 
     // Setting the side
     this->side = side;
@@ -50,7 +50,7 @@ MotorController::MotorController(int pin1, int pin2, int pwmChannel1, int pwmCha
     setUpPWMChannel(pin1, pwmChannel1, freq, resolution);
 
     // Setting up the pwm channel 2 and attaching to pin 2
-    setUpPWMChannel(pin2, pwmChannel2, freq, resolution);
+    //setUpPWMChannel(pin2, pwmChannel2, freq, resolution);
 }
 
 /*
@@ -71,13 +71,11 @@ void MotorController::motorForwards(float speed){
     // Note: Forwards is dependent on which side the motor is on
     if(side == 'r'){
 
-        writePWMChannel(pwmChannel1, 0);
-        writePWMChannel(pwmChannel2, maxDutyCycle * speed);
+        writePWMChannel(pwmChannel1, maxDutyCycle * speed);
         //digitalOutput(pin1, 0);
         //digitalOutput(pin2, 1);
     } else if(side == 'l'){
         writePWMChannel(pwmChannel1, maxDutyCycle * speed);
-        writePWMChannel(pwmChannel2, 0);
         //digitalOutput(pin1, 1);
         //digitalOutput(pin2, 0);
     }
@@ -105,11 +103,9 @@ void MotorController::motorBackwards(float speed){
     if(side == 'r'){
         // digitalOutput(pin1, 1);
         writePWMChannel(pwmChannel1, maxDutyCycle * speed);
-        writePWMChannel(pwmChannel2, 0);
     } else if(side == 'l'){
-        writePWMChannel(pwmChannel1, 0);
         // digitalOutput(pin2, 1);
-        writePWMChannel(pwmChannel2, maxDutyCycle * speed);
+        writePWMChannel(pwmChannel1, maxDutyCycle * speed);
     }
 }
 
@@ -155,7 +151,7 @@ void MotorController::motorStop(){
     //digitalOutput(pin1, 0);
     //digitalOutput(pin2, 0);
     writePWMChannel(pwmChannel1, 0);
-    writePWMChannel(pwmChannel2, 0);
+    //writePWMChannel(pwmChannel2, 0);
 }
 
 /*

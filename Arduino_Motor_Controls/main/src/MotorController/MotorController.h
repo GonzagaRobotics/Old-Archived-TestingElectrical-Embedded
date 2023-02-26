@@ -22,7 +22,7 @@ Description: This class represents one motor controller on the board. MotorSet u
 
 class MotorController{
     public:
-        MotorController(int, int, int, int, char);
+        MotorController(int, int, char);
 
         void motorForwards(float);
         void motorBackwards(float);
@@ -32,12 +32,12 @@ class MotorController{
         char getSide();
     private:
         int pin1;
-        int pin2;
+        //int pin2;
         int pwmChannel1;
-        int pwmChannel2;
+        //int pwmChannel2;
         char side;
 
-        int freq = 500;
+        int freq = 333;
         int resolution = 8;
         int maxDutyCycle = 150;
 
