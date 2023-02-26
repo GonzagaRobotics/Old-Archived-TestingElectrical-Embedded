@@ -102,7 +102,7 @@ void MotorController::motorBackwards(float speed){
     // Note: Backwards is dependent on which side the motor is on
     if(side == 'r'){
         // digitalOutput(pin1, 1);
-        writePWMChannel(pwmChannel1, maxDutyCycle * speed);
+        writePWMChannel(pwmChannel1, .5 + maxDutyCycle * speed);
     } else if(side == 'l'){
         // digitalOutput(pin2, 1);
         writePWMChannel(pwmChannel1, maxDutyCycle * speed);
