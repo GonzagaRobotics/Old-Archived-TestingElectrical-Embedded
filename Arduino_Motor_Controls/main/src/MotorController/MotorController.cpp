@@ -149,7 +149,6 @@ Function: motorStop()
 Input: N/A
 Output: Sends a signal to motor to stop spinning
 Description: 
-
 */
 void MotorController::motorStop(){
     // Writing low to pin 1 and pin 2 will cause the motor to stop
