@@ -3,14 +3,14 @@
 #include <rcl/rcl.h>
 #include <rclc/rclc.h>
 #include <rclc/executor.h>
-#include <std_msgs/msg/int32.h>
+#include <std_msgs/msg/float32.h>
 
 #if !defined(MICRO_ROS_TRANSPORT_ARDUINO_SERIAL)
 #error This example is only avaliable for Arduino framework with serial transport.
 #endif
 
 rcl_subscription_t subscriber;
-std_msgs__msg__Int32 msg;
+std_msgs__msg__Float32 msg;
 
 rclc_executor_t executor;
 rclc_support_t support;
@@ -32,8 +32,16 @@ void error_loop() {
 
 void subscription_callback(const void * msgin)
 {  
-  const std_msgs__msg__Int32 * msg = (const std_msgs__msg__Int32 *)msgin;
-  // digitalWrite(LED_PIN, (msg->data == 0) ? LOW : HIGH);  
+  const std_msgs__msg__Float32 * msg = (const std_msgs__msg__Float32 *)msgin;
+
+  if (msg->data > 0)
+  {
+    digitalWrite(LED_PIN, HIGH);
+  }
+  else
+  {
+    digitalWrite(LED_PIN, LOW);
+  }
 }
 
 void setup() {
@@ -58,8 +66,8 @@ void setup() {
   RCCHECK(rclc_subscription_init_default(
     &subscriber,
     &node,
-    ROSIDL_GET_MSG_TYPE_SUPPORT(std_msgs, msg, Int32),
-    "led_control"));
+    ROSIDL_GET_MSG_TYPE_SUPPORT(std_msgs, msg, Float32),
+    "motor_command_int"));
 
   // create executor
   RCCHECK(rclc_executor_init(&executor, &support.context, 1, &allocator));
@@ -73,17 +81,10 @@ void setup() {
 }
 
 void loop() {
-  delay(100);
+  //delay(100);
   RCSOFTCHECK(rclc_executor_spin_some(&executor, RCL_MS_TO_NS(100)));
 
-  if (msg.data == 15)
-  {
-    digitalWrite(LED_PIN, HIGH);
-  }
-  else
-  {
-    digitalWrite(LED_PIN, LOW);
-  }
+  
   
 
 }
