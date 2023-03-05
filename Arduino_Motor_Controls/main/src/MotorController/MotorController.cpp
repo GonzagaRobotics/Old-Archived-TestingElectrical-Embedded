@@ -162,7 +162,7 @@ Output: int - duty cycle
 Description: calculates the duty cycle based on the inputted speed
             for the Talon SRX motor controllers
 */
-int calcDutyCycleForwards(float speed){
+int MotorController::calcDutyCycleForwards(float speed){
     // Desired time sending high signal per period
     float highTime = restVeloHigh + speed*(maxVeloHigh - restVeloHigh);
 
@@ -184,7 +184,7 @@ Output: int - duty cycle
 Description: calculates the duty cycle based on the inputted speed
             for the Talon SRX motor controllers
 */
-int calcDutyCycleBackwards(float speed){
+int MotorController::calcDutyCycleBackwards(float speed){
     // Desired time sending high signal per period
     float highTime = restVeloHigh - speed*(restVeloHigh - minVeloHigh);
 
