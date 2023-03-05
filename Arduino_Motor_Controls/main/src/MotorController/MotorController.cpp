@@ -71,11 +71,11 @@ void MotorController::motorForwards(float speed){
     // Note: Forwards is dependent on which side the motor is on
     if(side == 'r'){
 
-        writePWMChannel(pwmChannel1, maxDutyCycle * speed);
+        writePWMChannel(pwmChannel1, calcDutyCycleForwards(speed));
         //digitalOutput(pin1, 0);
         //digitalOutput(pin2, 1);
     } else if(side == 'l'){
-        writePWMChannel(pwmChannel1, maxDutyCycle * speed);
+        writePWMChannel(pwmChannel1, calcDutyCycleBackwards(speed));
         //digitalOutput(pin1, 1);
         //digitalOutput(pin2, 0);
     }
@@ -102,10 +102,10 @@ void MotorController::motorBackwards(float speed){
     // Note: Backwards is dependent on which side the motor is on
     if(side == 'r'){
         // digitalOutput(pin1, 1);
-        writePWMChannel(pwmChannel1, .5 + maxDutyCycle * speed);
+        writePWMChannel(pwmChannel1, calcDutyCycleBackwards(speed));
     } else if(side == 'l'){
         // digitalOutput(pin2, 1);
-        writePWMChannel(pwmChannel1, maxDutyCycle * speed);
+        writePWMChannel(pwmChannel1, calcDutyCycleForwards(speed));
     }
 }
 
@@ -150,9 +150,54 @@ void MotorController::motorStop(){
     // Writing low to pin 1 and pin 2 will cause the motor to stop
     //digitalOutput(pin1, 0);
     //digitalOutput(pin2, 0);
-    writePWMChannel(pwmChannel1, 0);
+    writePWMChannel(pwmChannel1, calcDutyCycleForwards(0));
     //writePWMChannel(pwmChannel2, 0);
 }
+
+
+/*
+Function: calcDutyCycleForwards()
+Input: float - a value of speed between 0(stopped) and 1(full speed)
+Output: int - duty cycle 
+Description: calculates the duty cycle based on the inputted speed
+            for the Talon SRX motor controllers
+*/
+int calcDutyCycleForwards(float speed){
+    // Desired time sending high signal per period
+    float highTime = restVeloHigh + speed*(maxVeloHigh - restVeloHigh);
+
+    // Current period based on frequency
+    float period = 1 / freq * 1000;
+    
+    // Duty cycle as a float between 0 and 1
+    float duty = highTime / period;
+
+    // Returning duty cycle as an int between 0 and 255
+    return (int)(duty * (float)maxDutyCycle);
+}
+
+
+/*
+Function: calcDutyCycleBackwards()
+Input: float - a value of speed between 0(stopped) and 1(full speed)
+Output: int - duty cycle 
+Description: calculates the duty cycle based on the inputted speed
+            for the Talon SRX motor controllers
+*/
+int calcDutyCycleBackwards(float speed){
+    // Desired time sending high signal per period
+    float highTime = restVeloHigh - speed*(restVeloHigh - minVeloHigh);
+
+    // Current period based on frequency
+    float period = 1 / freq * 1000;
+    
+    // Duty cycle as a float between 0 and 1
+    float duty = highTime / period;
+
+    // Returning duty cycle as an int between 0 and 255
+    return (int)(duty * (float)maxDutyCycle);
+}
+
 
 /*
 Function: getSide()

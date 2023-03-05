@@ -39,7 +39,14 @@ class MotorController{
 
         int freq = 333;
         int resolution = 8;
-        int maxDutyCycle = 150;
+        int maxDutyCycle = 255;
+
+        float maxVeloHigh = 2; // forwards
+        float restVeloHigh = 1.5; // stopped
+        float minVeloHigh = 1; // max backwards
+
+        int calcDutyCycleForwards(float);
+        int calcDutyCycleBackwards(float);
 
         float returnAbs(float);
 };
