@@ -16,12 +16,11 @@ Description: Function file for ESP32 GPIO in C++
 // Outputs: pointer to the left MotorSet
 MotorSet* addPinsToLeftMotorSet(){
     // All directions are from the perspective of the rover's POV
-    
     // Left microcontroller (motors 1 - 3)
     // Pins for the first motor (front left)
-    int motor1Pin1 = -1;
+    int motor1Pin1 = 1;
     int motor1Pin2 = -1;
-    int motor1PWMChannel1 = 0;
+    int motor1PWMChannel1 = 1;
     int motor1PWMChannel2 = 1;
     char motor1Side = 'l';
 
@@ -43,7 +42,7 @@ MotorSet* addPinsToLeftMotorSet(){
     MotorSet* leftMotorSet = new MotorSet;
 
     // Adding motors to left MotorSet
-    //leftMotorSet->addMotor(motor1Pin1, motor1Pin2, motor1PWMChannel1, motor1PWMChannel2, motor1Side);
+    leftMotorSet->addMotor(motor1Pin1, motor1PWMChannel1, motor1Side);
     //leftMotorSet->addMotor(motor2Pin1, motor2Pin2, motor2PWMChannel1, motor2PWMChannel2, motor2Side);
     //leftMotorSet->addMotor(motor3Pin1, motor3Pin2, motor3PWMChannel1, motor3PWMChannel2, motor3Side);
 
@@ -58,9 +57,9 @@ MotorSet* addPinsToRightMotorSet(){
     // Right microcontroller (motors 4 - 6)
     // Pins for the fourth motor (front right)
     int motor4Pin1 = 0;
-    int motor4Pin2 = -1;
+    //int motor4Pin2 = -1;
     int motor4PWMChannel1 = 0;
-    int motor4PWMChannel2 = 1;
+    //int motor4PWMChannel2 = 1;
     char motor4Side = 'r';
 
     // Pins for the fifth motor (middle right)

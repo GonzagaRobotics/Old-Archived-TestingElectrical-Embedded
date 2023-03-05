@@ -10,6 +10,7 @@ Description: Header file for DataProcess.cpp
 #define DATA_PROCESS
 
 #include "../MotorSet/MotorSet.h"
+#include <Arduino.h>
 
 const float TRIGGER_RESTING_THRESHOLD = 0.95;
 const float TRIGGER_COMPRESSED_THRESHOLD = -0.95;

@@ -62,6 +62,7 @@ Description: sends a signal to the motor to spin the right or left wheel forward
 */
 void MotorController::motorForwards(float speed){
     // Making sure speed is between 0 and 1, inclusive
+    Serial.print("Here");
     if(speed > 1)
         speed = 1;
     else if(speed < 0)
@@ -70,7 +71,8 @@ void MotorController::motorForwards(float speed){
     // Setting pin 1 and pin 2 to spin the motor forwards
     // Note: Forwards is dependent on which side the motor is on
     if(side == 'r'){
-
+        int duty = calcDutyCycleForwards(speed);
+        //Serial.print(duty);
         writePWMChannel(pwmChannel1, calcDutyCycleForwards(speed));
         //digitalOutput(pin1, 0);
         //digitalOutput(pin2, 1);
@@ -165,15 +167,19 @@ Description: calculates the duty cycle based on the inputted speed
 int MotorController::calcDutyCycleForwards(float speed){
     // Desired time sending high signal per period
     float highTime = restVeloHigh + speed*(maxVeloHigh - restVeloHigh);
-
+    //Serial.print(highTime);
     // Current period based on frequency
-    float period = 1 / freq * 1000;
-    
+    float period = 1 / (float)freq * 1000;
+    //Serial.print(" ");
+    //Serial.print(period);
     // Duty cycle as a float between 0 and 1
     float duty = highTime / period;
-
+    //Serial.print(" ");
+    //Serial.print(duty);
     // Returning duty cycle as an int between 0 and 255
-    return (int)(duty * (float)maxDutyCycle);
+    //Serial.print(" ");
+    //Serial.print(duty * maxDutyCycle);
+    return duty * maxDutyCycle;
 }
 
 

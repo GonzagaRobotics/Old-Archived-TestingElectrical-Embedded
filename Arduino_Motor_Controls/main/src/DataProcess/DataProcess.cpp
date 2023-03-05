@@ -96,6 +96,14 @@ void dataHandling(float dataArr[], MotorSet* leftSet, MotorSet* rightSet){
         rightSpeedCurrent = setTriggerWheelSpeed(rightTrigger);
     }
 
+    Serial.print("{");
+    Serial.print(leftSpeedCurrent);
+    Serial.print(",");
+    Serial.print(rightSpeedCurrent);
+    Serial.print("}");
+    Serial.flush();
+    delay(1000);
+
     /* If leftSpeedCurrent is sufficiently different than leftSpeedPrevious,
     then execute the motor command, either stop if 0, drive forward if positive,
     or drive backwards if negative*/ 
