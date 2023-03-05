@@ -145,7 +145,7 @@ float setTriggerWheelSpeed(float triggerVal){
         return 1;
 
     // Return trigger value converted into a float between 0 (stopped) and 1 (full speed)
-    return triggerVal * (-1/2) + 1/2;
+    return triggerVal * -0.5 + 0.5;
 }
 
 /*

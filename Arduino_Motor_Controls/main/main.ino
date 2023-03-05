@@ -23,16 +23,18 @@ void loop() {
   
   // put your main code here, to run repeatedly:
   // Go forwards full speed
-  controlData[0] = -0.96;
-  controlData[1] = -0.96;
+  controlData[0] = -0.9;
+  controlData[1] = -0.9;
   controlData[2] = 0;
   controlData[3] = 0;
   controlData[4] = 0;
+  
+  /*
   //Serial.print("HERE");
   dataHandling(controlData, leftMotors, rightMotors);
   //Serial.print("Full speed forwards.   ");
   delay(5000);
-/*
+ */
   // Slow Down to half speed
   //Serial.print("Slowing Down.   ");
   for(int i = 1; i < 50; i++){
@@ -45,7 +47,7 @@ void loop() {
 
   //Serial.print("Half speed forwards.   ");
   delay(5000);
-/*  
+  /*
   // Turn Left
   controlData[0] = 0;
   controlData[1] = -0.99999;
