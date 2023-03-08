@@ -19,10 +19,6 @@ void dataHandling(float dataArr[], MotorSet* leftSet, MotorSet* rightSet){
     // Note to future self, make this so it remembers past values, and doesn't run through function
     // Ended up being a massive nest of conditionals that wouldn't have improved the speed by much
     // Worth considering for the triggers at least
-
-    // To do:
-    // Stop one motor
-    // Remembering past values
     
     // Setting values to variables for easier use in functions (and reading clarity)
     float leftTrigger = dataArr[0];
