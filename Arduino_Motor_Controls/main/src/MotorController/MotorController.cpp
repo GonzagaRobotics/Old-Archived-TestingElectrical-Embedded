@@ -21,7 +21,7 @@ Description: Sets up the pins for the motorcontroller and tells which side
 */
 MotorController::MotorController(int pin1, int pwmChannel1, char side){
     // Setting up pin 1
-    setOutputPin(pin1, 1);
+    setOutputPin(pin1);
     this->pin1 = pin1;
 
     // Declaring pwm channel 1

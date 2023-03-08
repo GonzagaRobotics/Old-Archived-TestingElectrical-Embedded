@@ -16,6 +16,8 @@ Description: Header file for ESP32 GPIO in C++
 void setOutputPin(int);
 void setUpPWMChannel(int, int, int, int);
 void writePWMChannel(int, int);
+MotorSet* addPinsToLeftMotorSet();
+MotorSet* addPinsToRightMotorSet();
 
 // Archive (in case we need to switch from Arduino commands to register values)
 // Note: This is not complete code
@@ -37,9 +39,6 @@ void writePWMChannel(int, int);
 #define GPIO_ENABLE1_REG 0x002C
 //#define GPIO_OUT_REG 0x0004
 #define GPIO_OUT1_REG 0x0010
-
-MotorSet* addPinsToLeftMotorSet();
-MotorSet* addPinsToRightMotorSet();
 */
 
 #endif
