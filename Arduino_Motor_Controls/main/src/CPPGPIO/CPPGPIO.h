@@ -12,6 +12,14 @@ Description: Header file for ESP32 GPIO in C++
 #include <Arduino.h>
 #include "../MotorSet/MotorSet.h"
 
+
+void setOutputPin(int);
+void setUpPWMChannel(int, int, int, int);
+void writePWMChannel(int, int);
+
+// Archive (in case we need to switch from Arduino commands to register values)
+// Note: This is not complete code
+/*
 // Min and max GPIO pins for checking valid pin number
 #define MAX_GPIO_PIN 39
 #define MIN_GPIO_PIN 0
@@ -32,13 +40,6 @@ Description: Header file for ESP32 GPIO in C++
 
 MotorSet* addPinsToLeftMotorSet();
 MotorSet* addPinsToRightMotorSet();
-
-void setOutputPin(int);
-void setInputPin(int);
-void setUpPWMChannel(int, int, int, int);
-
-void digitalOutput(int, int);
-void writePWMChannel(int, int);
-int power(int, int);
+*/
 
 #endif

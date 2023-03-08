@@ -32,9 +32,7 @@ class MotorController{
         char getSide();
     private:
         int pin1;
-        //int pin2;
         int pwmChannel1;
-        //int pwmChannel2;
         char side;
 
         int freq = 333;
@@ -48,7 +46,7 @@ class MotorController{
         int calcDutyCycleForwards(float);
         int calcDutyCycleBackwards(float);
 
-        float returnAbs(float);
+        //float returnAbs(float);
 };
 
 #endif
