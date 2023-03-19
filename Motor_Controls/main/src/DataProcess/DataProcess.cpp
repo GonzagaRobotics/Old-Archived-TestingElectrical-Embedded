@@ -81,6 +81,9 @@ void dataHandling(float dataArr[], MotorSet* leftSet, MotorSet* rightSet){
         rightSpeedCurrent = setTriggerWheelSpeed(rightTrigger);
     }
 
+    // left motor needs to be flipped
+    
+
     /* If leftSpeedCurrent is sufficiently different than leftSpeedPrevious,
     then execute the motor command, either stop if 0, drive forward if positive,
     or drive backwards if negative*/ 
@@ -91,7 +94,7 @@ void dataHandling(float dataArr[], MotorSet* leftSet, MotorSet* rightSet){
         } else if (leftSpeedCurrent > 0) {
             leftSet->driveForwards(leftSpeedCurrent); //If positive, then go forward
         } else {
-            leftSet->driveBackwards(leftSpeedCurrent); //If negative, then go backwards
+            leftSet->driveBackwards(-leftSpeedCurrent); //If negative, then go backwards
         }
         leftSpeedPrevious = leftSpeedCurrent; //Remember current speed for next loop
     }
@@ -102,7 +105,7 @@ void dataHandling(float dataArr[], MotorSet* leftSet, MotorSet* rightSet){
         } else if (rightSpeedCurrent > 0) {
             rightSet->driveForwards(rightSpeedCurrent); //If positive, then go forward
         } else {
-            rightSet->driveBackwards(rightSpeedCurrent); //If negative, then go backwards
+            rightSet->driveBackwards(-rightSpeedCurrent); //If negative, then go backwards
         }
         rightSpeedPrevious = rightSpeedCurrent; //Remember current speed for next loop
     }
