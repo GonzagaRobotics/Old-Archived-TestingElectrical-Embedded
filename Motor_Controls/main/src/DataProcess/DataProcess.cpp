@@ -16,10 +16,6 @@ Output: None
 Description: Processes the input array and calls necessary functions
 */
 void dataHandling(float dataArr[], MotorSet* leftSet, MotorSet* rightSet){
-    // Note to future self, make this so it remembers past values, and doesn't run through function
-    // Ended up being a massive nest of conditionals that wouldn't have improved the speed by much
-    // Worth considering for the triggers at least
-    
     // Setting values to variables for easier use in functions (and reading clarity)
     float leftTrigger = dataArr[0];
     float rightTrigger = dataArr[1];
@@ -52,11 +48,8 @@ void dataHandling(float dataArr[], MotorSet* leftSet, MotorSet* rightSet){
     if(dpadPressed == true && lTriggerPressed == false && rTriggerPressed == false && lShoulderPressed == false && rShoulderPressed == false) {
         if(dpad == DPAD_LEFT){ // If left dpad is pressed
             // Spin left
-            //leftSet->spinLeft(SPINNING_SPEED);
-            //rightSet->spinLeft(SPINNING_SPEED);
             leftSpeedCurrent = -SPINNING_SPEED;
             rightSpeedCurrent = SPINNING_SPEED;
-
         } else if (dpad == DPAD_RIGHT){ // If right dpad is pressed
             // Spin right
             leftSpeedCurrent = SPINNING_SPEED;
@@ -67,28 +60,24 @@ void dataHandling(float dataArr[], MotorSet* leftSet, MotorSet* rightSet){
     // If left shoulder is pressed, and left trigger is not
     if(lShoulderPressed == true){
         // Set left wheels backwards
-        //leftSet->driveBackwards(BACKWARDS_SPEED);
         leftSpeedCurrent = -BACKWARDS_SPEED;
     }
 
     // If right shoulder is pressed, and right trigger is not
     if(rShoulderPressed == true){ 
         // Set right wheels backwards
-        //rightSet->driveBackwards(BACKWARDS_SPEED);
         rightSpeedCurrent = -BACKWARDS_SPEED;
     }
 
     // If left trigger is pressed
     if(lTriggerPressed == true){ 
         // Set left wheels forwards
-        //leftSet->driveForwards(setTriggerWheelSpeed(leftTrigger));
         leftSpeedCurrent = setTriggerWheelSpeed(leftTrigger);
     }
 
     // If right trigger is pressed
     if(rTriggerPressed == true){ 
         // Set right wheels forward
-        //rightSet->driveForwards(setTriggerWheelSpeed(rightTrigger));
         rightSpeedCurrent = setTriggerWheelSpeed(rightTrigger);
     }
 
@@ -102,7 +91,7 @@ void dataHandling(float dataArr[], MotorSet* leftSet, MotorSet* rightSet){
         } else if (leftSpeedCurrent > 0) {
             leftSet->driveForwards(leftSpeedCurrent); //If positive, then go forward
         } else {
-            leftSet->driveBackwards(-leftSpeedCurrent); //If negative, then go backwards
+            leftSet->driveBackwards(leftSpeedCurrent); //If negative, then go backwards
         }
         leftSpeedPrevious = leftSpeedCurrent; //Remember current speed for next loop
     }
@@ -113,7 +102,7 @@ void dataHandling(float dataArr[], MotorSet* leftSet, MotorSet* rightSet){
         } else if (rightSpeedCurrent > 0) {
             rightSet->driveForwards(rightSpeedCurrent); //If positive, then go forward
         } else {
-            rightSet->driveBackwards(-rightSpeedCurrent); //If negative, then go backwards
+            rightSet->driveBackwards(rightSpeedCurrent); //If negative, then go backwards
         }
         rightSpeedPrevious = rightSpeedCurrent; //Remember current speed for next loop
     }

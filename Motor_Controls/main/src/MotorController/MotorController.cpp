@@ -21,7 +21,7 @@ Description: Sets up the pins for the motorcontroller and tells which side
 */
 MotorController::MotorController(int pin1, int pwmChannel1, char side){
     // Setting up pin 1
-    setOutputPin(pin1);
+    //setOutputPin(pin1);
     this->pin1 = pin1;
 
     // Declaring pwm channel 1
@@ -126,7 +126,7 @@ int MotorController::calcDutyCycleBackwards(float speed){
     float highTime = restVeloHigh - speed*(restVeloHigh - minVeloHigh);
 
     // Current period based on frequency
-    float period = 1.0 / freq * 1000;
+    float period = 1.0 / (float)freq * 1000;
     
     // Duty cycle as a float between 0 and 1
     float duty = highTime / period;

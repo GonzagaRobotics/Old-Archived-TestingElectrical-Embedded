@@ -90,6 +90,7 @@ Input: Turning speed
 Output: Rover spins left
 Description: Spins left
 */
+/*
 void MotorSet::spinLeft(float speed){
     for (int i = 0; i < numMotors; i++) {
         // If the motor is on the left
@@ -102,13 +103,14 @@ void MotorSet::spinLeft(float speed){
         }
     }
 }
-
+*/
 /*
 Function: spinRight()
 Input: Turning speed
 Output: Rover spins right
 Description: Spins right
 */
+/*
 void MotorSet::spinRight(float speed){
     for (int i = 0; i < numMotors; i++) {
         // If the motor is on the right
@@ -121,3 +123,4 @@ void MotorSet::spinRight(float speed){
         }
     }
 }
+*/

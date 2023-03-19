@@ -17,8 +17,11 @@ Description: Function file for ESP32 GPIO in C++
 MotorSet* addPinsToLeftMotorSet(){
     // All directions are from the perspective of the rover's POV
     // Left microcontroller (motors 1 - 3)
+
+    // Note: Be careful not to use the pin that ROS is using to communicate 
+
     // Pins for the first motor (front left)
-    int motor1Pin1 = 1;
+    int motor1Pin1 = 2;
     int motor1PWMChannel1 = 1;
     char motor1Side = 'l';
 
@@ -49,6 +52,9 @@ MotorSet* addPinsToLeftMotorSet(){
 // Outputs: pointer to the right MotorSet
 MotorSet* addPinsToRightMotorSet(){
     // Right microcontroller (motors 4 - 6)
+
+    // Note: Be careful not to use the pin that ROS is using to communicate 
+
     // Pins for the fourth motor (front right)
     int motor4Pin1 = 0;
     int motor4PWMChannel1 = 0;
